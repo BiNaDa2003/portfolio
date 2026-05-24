@@ -1,7 +1,18 @@
 import React, { useState } from "react";
-import { ArrowRight, ExternalLink, Menu, X } from "lucide-react";
+import { ArrowRight, Braces, Code2, Database, ExternalLink, Globe2, LayoutGrid, Menu, Palette, Smartphone, TerminalSquare, X } from "lucide-react";
 
 const roles = ["Full Stack Developer", "UI/UX Designer", "YouTuber"];
+
+const techStacks = [
+  { label: "HTML5", icon: Code2 },
+  { label: "CSS3", icon: Palette },
+  { label: "JavaScript", icon: Braces },
+  { label: "React", icon: LayoutGrid },
+  { label: "Node.js", icon: TerminalSquare },
+  { label: "Databases", icon: Database },
+  { label: "UI/UX", icon: Smartphone },
+  { label: "Web Apps", icon: Globe2 },
+];
 
 export default function Portfolio() {
   const [hoverHero, setHoverHero] = useState(false);
@@ -418,6 +429,38 @@ export default function Portfolio() {
               <a href="https://www.fiverr.com/s/R7eGyP8" target="_blank" rel="noopener noreferrer" className="text-[#1da1f2] font-semibold flex items-center gap-2 hover:gap-4 duration-300">
                 View Fiverr Account <ArrowRight size={18} />
               </a>
+            </div>
+          </div>
+
+          <div className="mt-10 sm:mt-14">
+            <div className="flex items-center justify-between gap-3 mb-4">
+              <p className="text-sm sm:text-base font-semibold text-gray-700">
+                Languages & tools I work with
+              </p>
+              <span className="text-xs sm:text-sm text-gray-500 whitespace-nowrap">
+                Scroll horizontally →
+              </span>
+            </div>
+
+            <div className="tech-scrollbar overflow-hidden">
+              <div className="tech-marquee flex w-max gap-3 sm:gap-4">
+                {[...techStacks, ...techStacks].map((item, index) => {
+                  const Icon = item.icon;
+                  return (
+                    <div
+                      key={`${item.label}-${index}`}
+                      className="flex items-center gap-2 sm:gap-3 rounded-full bg-white border border-gray-100 px-4 sm:px-5 py-3 shadow-sm"
+                    >
+                      <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#1da1f2]/10 text-[#1da1f2]">
+                        <Icon size={18} />
+                      </span>
+                      <span className="text-sm sm:text-base font-semibold text-gray-800">
+                        {item.label}
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>

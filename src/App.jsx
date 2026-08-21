@@ -65,6 +65,8 @@ export default function Portfolio() {
   const [isDeleting, setIsDeleting] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [projectFilter, setProjectFilter] = useState("All");
+  const [isLoading, setIsLoading] = useState(true);
+  const [loaderText, setLoaderText] = useState("");
   const [dark, setDark] = useState(() => {
     const saved = localStorage.getItem("theme");
     if (saved) return saved === "dark";
@@ -75,6 +77,27 @@ export default function Portfolio() {
     document.documentElement.classList.toggle("dark", dark);
     localStorage.setItem("theme", dark ? "dark" : "light");
   }, [dark]);
+
+  React.useEffect(() => {
+    const name = "Binada_d.";
+    let characterIndex = 0;
+    let finishTimer;
+
+    const typingTimer = setInterval(() => {
+      characterIndex += 1;
+      setLoaderText(name.slice(0, characterIndex));
+
+      if (characterIndex === name.length) {
+        clearInterval(typingTimer);
+        finishTimer = setTimeout(() => setIsLoading(false), 500);
+      }
+    }, 110);
+
+    return () => {
+      clearInterval(typingTimer);
+      clearTimeout(finishTimer);
+    };
+  }, []);
 
   React.useEffect(() => {
     const currentRole = roles[roleIndex];
@@ -904,6 +927,18 @@ export default function Portfolio() {
           Back to Top
         </span>
       </a>
+
+      <div
+        className={`portfolio-loader fixed inset-0 z-[100] flex items-center justify-center bg-[#f5f5f5] dark:bg-[#0B1220] transition-opacity duration-700 ${
+          isLoading ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}
+        aria-hidden={!isLoading}
+      >
+        <div className="flex items-center text-2xl sm:text-4xl font-black tracking-tight">
+          <span className="text-[#00658D] dark:text-sky-300">{loaderText}</span>
+          <span className="ml-1 h-8 sm:h-10 w-0.5 bg-[#00AEEF] animate-pulse" aria-hidden="true" />
+        </div>
+      </div>
 
       <style>{`
         @keyframes float {

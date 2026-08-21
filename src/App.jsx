@@ -20,6 +20,43 @@ const projectFilters = [
   { label: "Web", icon: Code2 },
 ];
 
+function ShotFrame({ src, videoSrc, caption }) {
+  return (
+    <div className="relative group">
+      <div className="absolute -inset-2 sm:-inset-4 bg-gradient-to-r from-[#1da1f2]/25 via-[#1da1f2]/5 to-[#1da1f2]/25 blur-2xl rounded-[40px]"></div>
+
+      <div className="relative bg-gray-800 rounded-[20px] sm:rounded-[28px] p-2 sm:p-3 shadow-2xl hover:scale-[1.01] duration-500">
+        <div className="flex items-center justify-between px-2 pb-2 sm:pb-2.5">
+          <div className="flex gap-1.5 sm:gap-2">
+            <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-red-500"></div>
+            <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-yellow-500"></div>
+            <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-green-500"></div>
+          </div>
+          <div className="bg-gray-700 text-white/70 text-[10px] sm:text-xs px-3 sm:px-6 py-1 rounded-full truncate max-w-[55%]">
+            ceylon-tours
+          </div>
+          <div className="text-white/60 text-[10px] sm:text-xs whitespace-nowrap">4K</div>
+        </div>
+        {videoSrc ? (
+          <video
+            src={videoSrc}
+            aria-label={caption}
+            controls
+            muted
+            playsInline
+            preload="metadata"
+            className="w-full rounded-[12px] sm:rounded-[20px] bg-black"
+          />
+        ) : (
+          <img src={src} alt={caption} loading="lazy" className="w-full rounded-[12px] sm:rounded-[20px] bg-white" />
+        )}
+      </div>
+
+      <p className="text-center text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-3 font-medium">{caption}</p>
+    </div>
+  );
+}
+
 export default function Portfolio() {
   const [hoverHero, setHoverHero] = useState(false);
   const [roleIndex, setRoleIndex] = useState(0);
@@ -78,9 +115,9 @@ export default function Portfolio() {
   ];
 
   return (
-    <div className="bg-[#f5f5f5] dark:bg-[#0B1220] text-[#111827] dark:text-gray-100 overflow-x-hidden scroll-smooth min-h-screen transition-colors duration-300">
+    <div className="portfolio-shell bg-[#f5f5f5] dark:bg-[#0B1220] text-[#111827] dark:text-gray-100 overflow-x-hidden scroll-smooth min-h-screen transition-colors duration-300">
       {/* ================= NAVBAR ================= */}
-      <header className="fixed top-0 left-0 w-full z-50 backdrop-blur-xl bg-white/70 dark:bg-[#0B1220]/70 border-b border-gray-100 dark:border-gray-800/60 transition-colors duration-300">
+      <header className="fixed top-0 left-0 w-full z-50 backdrop-blur-xl bg-white/70 dark:bg-[#0B1220]/70 border-b border-gray-100 dark:border-gray-800/60 shadow-sm shadow-black/5 dark:shadow-none transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-6 lg:px-10 py-4 flex items-center justify-between">
           <a href="#hero" className="font-bold text-[#1da1f2] text-xl tracking-wide no-underline">
              <span style={{color: dark ? '#7DD3FC' : '#00658D', fontSize: 20, fontFamily: "'Hanken Grotesk', sans-serif", fontWeight: 700}}>Binada</span><span style={{color: '#00AEEF', fontSize: 20, fontFamily: "'Hanken Grotesk', sans-serif", fontWeight: 700}}>_d</span>
@@ -113,11 +150,11 @@ export default function Portfolio() {
               {dark ? <Sun size={20} /> : <Moon size={20} />}
             </button>
 
-            <a href="#contact" className="hidden sm:inline-block px-5 py-2 rounded-full border border-[#1da1f2] text-[#1da1f2] hover:bg-[#1da1f2] hover:text-white duration-300 no-underline">
+            <a href="#contact" className="header-contact inline-block px-3 sm:px-5 py-2 rounded-full border border-[#1da1f2] text-[#1da1f2] text-sm sm:text-base hover:bg-[#1da1f2] hover:text-white duration-300 no-underline">
               Contact Me
             </a>
 
-            <a href="/cv.pdf" download className="hidden sm:inline-block px-5 py-2 rounded-full bg-[#1da1f2] text-white hover:scale-105 duration-300 no-underline">
+            <a href="/cv.pdf" download className="hidden sm:inline-block px-5 py-2 rounded-full bg-gradient-to-r from-[#00658D] to-[#00AEEF] text-white hover:scale-105 hover:shadow-lg hover:shadow-[#00AEEF]/30 duration-300 no-underline">
               Download CV
             </a>
 
@@ -148,7 +185,7 @@ export default function Portfolio() {
                 <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="flex-1 text-center px-4 py-2 rounded-full border border-[#1da1f2] text-[#1da1f2] text-sm no-underline">
                   Contact Me
                 </a>
-                <a href="/cv.pdf" download className="flex-1 text-center px-4 py-2 rounded-full bg-[#1da1f2] text-white text-sm no-underline">
+                <a href="/cv.pdf" download className="flex-1 text-center px-4 py-2 rounded-full bg-gradient-to-r from-[#00658D] to-[#00AEEF] text-white text-sm no-underline">
                   Download CV
                 </a>
               </div>
@@ -164,6 +201,10 @@ export default function Portfolio() {
         onMouseEnter={() => setHoverHero(true)}
         onMouseLeave={() => setHoverHero(false)}
       >
+        <div className="pointer-events-none absolute -top-24 -left-40 w-[480px] h-[480px] rounded-full bg-gradient-to-br from-[#00AEEF]/20 to-transparent blur-3xl"></div>
+        <div className="pointer-events-none absolute top-1/3 -right-48 w-[520px] h-[520px] rounded-full bg-gradient-to-bl from-[#7DD3FC]/25 to-transparent blur-3xl"></div>
+        <div className="pointer-events-none absolute bottom-0 left-1/3 w-[400px] h-[300px] rounded-full bg-gradient-to-t from-[#00658D]/10 to-transparent blur-3xl"></div>
+
         <div className="max-w-7xl mx-auto w-full flex flex-col items-center justify-center gap-8 lg:gap-6 relative">
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-center w-full lg:relative lg:min-h-[500px]">
 
@@ -299,7 +340,7 @@ export default function Portfolio() {
             }`}
           >
             <h1 className="text-3xl sm:text-4xl font-black mb-2">
-              It's me <span className="text-[#1da1f2]">binada_d.</span>
+              It's me <span className="bg-gradient-to-r from-[#00658D] to-[#00AEEF] dark:from-sky-400 dark:to-cyan-300 bg-clip-text text-transparent">binada_d.</span>
             </h1>
 
             <p className="text-gray-500 dark:text-gray-400">
@@ -314,23 +355,25 @@ export default function Portfolio() {
         <div className="max-w-6xl mx-auto text-center">
           <div className="relative inline-block mt-10 mb-14 w-40 sm:w-48 md:w-56 lg:w-64 xl:w-80 aspect-square">
             <div
-              className="absolute bg-white rounded-full"
+              className="absolute rounded-full overflow-hidden bg-white"
               style={{
                 width: '90%', height: '90%',
                 left: '7%', top: '4%',
                 boxShadow: "0 0 30px 8px rgba(14, 165, 233, 0.4), 0 0 60px 20px rgba(14, 165, 233, 0.15)",
                 outline: "4px solid #0EA5E9",
               }}
-            />
-            <img
-              src="/images/about.jpg"
-              alt=""
-              className="absolute inset-0 w-full h-full rounded-full object-cover object-bottom"
-            />
+            >
+              <img
+                src="/images/about.jpg"
+                alt=""
+                className="absolute inset-0 w-full h-full object-cover"
+                style={{ transform: "translateY(3.5%) scale(1.08)", transformOrigin: "center center" }}
+              />
+            </div>
           </div>
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-5">
-            I'm <span className="text-[#1da1f2]">Binada Basilu</span>
+            I'm <span className="bg-gradient-to-r from-[#00658D] to-[#00AEEF] dark:from-sky-400 dark:to-cyan-300 bg-clip-text text-transparent">Binada Basilu</span>
           </h2>
 
           <p className="max-w-2xl mx-auto text-gray-500 dark:text-gray-400 leading-8 px-2">
@@ -340,21 +383,21 @@ export default function Portfolio() {
 
           <div className="grid grid-cols-3 gap-4 sm:gap-6 lg:gap-10 mt-12 sm:mt-16 max-w-xl mx-auto">
             <div>
-              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black">5+</h3>
+              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black bg-gradient-to-r from-[#00658D] to-[#00AEEF] dark:from-sky-400 dark:to-cyan-300 bg-clip-text text-transparent">5+</h3>
               <p className="text-gray-500 dark:text-gray-400 uppercase tracking-[3px] text-xs mt-2">
                 Projects
               </p>
             </div>
 
             <div>
-              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black">1+</h3>
+              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black bg-gradient-to-r from-[#00658D] to-[#00AEEF] dark:from-sky-400 dark:to-cyan-300 bg-clip-text text-transparent">1+</h3>
               <p className="text-gray-500 dark:text-gray-400 uppercase tracking-[3px] text-xs mt-2">
                 Years
               </p>
             </div>
 
             <div>
-              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black">10+</h3>
+              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black bg-gradient-to-r from-[#00658D] to-[#00AEEF] dark:from-sky-400 dark:to-cyan-300 bg-clip-text text-transparent">10+</h3>
               <p className="text-gray-500 dark:text-gray-400 uppercase tracking-[3px] text-xs mt-2">
                 Clients
               </p>
@@ -410,12 +453,12 @@ export default function Portfolio() {
               My Expertise
             </p>
 
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black">Service Offerings</h2>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black bg-gradient-to-r from-[#00658D] to-[#00AEEF] dark:from-sky-400 dark:to-cyan-300 bg-clip-text text-transparent">Service Offerings</h2>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6 sm:gap-10">
             {/* CARD */}
-            <div className="bg-white dark:bg-[#111A2E] rounded-[24px] sm:rounded-[30px] p-6 sm:p-8 lg:p-10 shadow-xl hover:-translate-y-3 duration-500 border border-gray-100 dark:border-gray-800">
+            <div className="bg-white dark:bg-[#111A2E] rounded-[24px] sm:rounded-[30px] p-6 sm:p-8 lg:p-10 shadow-xl shadow-[#00AEEF]/10 hover:-translate-y-3 hover:shadow-2xl hover:shadow-[#00AEEF]/20 duration-500 border border-gray-100 dark:border-gray-800">
               <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center mb-6 sm:mb-8">
                 <img src="/images/cyberstorelk.png" alt="CyberStoreLK" className="w-8 h-8 sm:w-10 sm:h-10 object-contain" />
               </div>
@@ -439,7 +482,7 @@ export default function Portfolio() {
             </div>
 
             {/* CARD */}
-            <div className="bg-white dark:bg-[#111A2E] rounded-[24px] sm:rounded-[30px] p-6 sm:p-8 lg:p-10 shadow-xl hover:-translate-y-3 duration-500 border border-gray-100 dark:border-gray-800">
+            <div className="bg-white dark:bg-[#111A2E] rounded-[24px] sm:rounded-[30px] p-6 sm:p-8 lg:p-10 shadow-xl shadow-[#00AEEF]/10 hover:-translate-y-3 hover:shadow-2xl hover:shadow-[#00AEEF]/20 duration-500 border border-gray-100 dark:border-gray-800">
               <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-green-100 flex items-center justify-center mb-6 sm:mb-8">
                 <img src="https://cdn.worldvectorlogo.com/logos/fiverr-1.svg" alt="Fiverr" className="w-8 h-8 sm:w-10 sm:h-10 object-contain" />
               </div>
@@ -471,7 +514,7 @@ export default function Portfolio() {
               </span>
             </div>
 
-            <div className="tech-scrollbar overflow-hidden">
+            <div className="tech-scrollbar">
               <div className="tech-marquee flex w-max gap-3 sm:gap-4">
                 {[...techStacks, ...techStacks].map((item, index) => {
                   const Icon = item.icon;
@@ -504,19 +547,19 @@ export default function Portfolio() {
                 Portfolio
               </p>
 
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black bg-gradient-to-r from-[#00658D] to-[#00AEEF] dark:from-sky-400 dark:to-cyan-300 bg-clip-text text-transparent">
                 Selected Works &
                 <br />
                 Experiments
               </h2>
             </div>
 
-            <div className="bg-white dark:bg-[#111A2E] rounded-full p-2 flex gap-1.5 sm:gap-2 shadow-md overflow-x-auto w-full sm:w-auto">
+            <div className="project-filter-bar bg-white dark:bg-[#111A2E] rounded-full p-2 flex gap-1.5 sm:gap-2 shadow-md w-full sm:w-auto">
               {projectFilters.map(({ label, icon: Icon }) => (
                 <button
                   key={label}
                   onClick={() => setProjectFilter(label)}
-                  className={`flex items-center gap-2 px-4 sm:px-6 py-2 rounded-full text-sm sm:text-base whitespace-nowrap duration-300 ${
+                  className={`project-filter flex items-center gap-2 px-4 sm:px-6 py-2 rounded-full text-sm sm:text-base whitespace-nowrap duration-300 ${
                     projectFilter === label
                       ? "bg-[#1da1f2] text-white shadow-lg shadow-[#1da1f2]/30 scale-[1.03]"
                       : "hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300"
@@ -600,7 +643,7 @@ export default function Portfolio() {
                 Featured Project
               </p>
 
-              <h3 className="text-3xl sm:text-4xl lg:text-5xl font-black mb-3">
+              <h3 className="text-3xl sm:text-4xl lg:text-5xl font-black mb-3 bg-gradient-to-r from-[#00658D] to-[#00AEEF] dark:from-sky-400 dark:to-cyan-300 bg-clip-text text-transparent">
                 Ceylon Tours
               </h3>
 
@@ -609,37 +652,17 @@ export default function Portfolio() {
               </p>
             </div>
 
-            {/* VIDEO (LEFT) + DETAILS (RIGHT) */}
-            <div className="max-w-6xl mx-auto grid lg:grid-cols-5 gap-8 lg:gap-10 items-start">
-              <div className="lg:col-span-3 relative">
-                <div className="absolute -inset-2 sm:-inset-4 bg-gradient-to-r from-[#1da1f2]/25 via-[#1da1f2]/5 to-[#1da1f2]/25 blur-2xl rounded-[40px]"></div>
-
-                <div className="relative bg-gray-800 rounded-[24px] sm:rounded-[32px] p-2 sm:p-3 shadow-2xl">
-                  <div className="flex items-center justify-between px-2 sm:px-3 pb-2 sm:pb-2.5">
-                    <div className="flex gap-1.5 sm:gap-2">
-                      <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-red-500"></div>
-                      <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-yellow-500"></div>
-                      <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-green-500"></div>
-                    </div>
-                    <div className="bg-gray-700 text-white/70 text-[10px] sm:text-xs px-3 sm:px-8 py-1 sm:py-1.5 rounded-full truncate max-w-[50%]">
-                      ceylon-tours · booking system
-                    </div>
-                    <div className="text-white/60 text-[10px] sm:text-xs whitespace-nowrap">Full Stack</div>
-                  </div>
-
-                  <video
-                    src="/videos/ceylon-tours-demo.mp4"
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    controls
-                    preload="metadata"
-                    className="w-full rounded-[16px] sm:rounded-[24px] bg-black shadow-inner"
-                  />
-                </div>
+            <div className={projectFilter === "Web"
+              ? "max-w-6xl mx-auto grid lg:grid-cols-5 gap-8 lg:gap-10 items-start"
+              : "max-w-3xl mx-auto"}>
+              <div className={projectFilter === "Web" ? "lg:col-span-3 flex flex-col gap-8 sm:gap-10" : "flex flex-col gap-8 sm:gap-10"}>
+                <ShotFrame
+                  videoSrc="/images/Screen%20Recording%202026-08-21%20161919.mp4"
+                  caption="Customer Panel — Tour Packages & Booking"
+                />
               </div>
 
+              {projectFilter === "Web" && (
               <div className="lg:col-span-2 bg-white dark:bg-[#111A2E] rounded-[24px] sm:rounded-[32px] p-6 sm:p-8 shadow-xl border border-gray-100 dark:border-gray-800 flex flex-col gap-6 sm:gap-7 hover:-translate-y-1 duration-500 lg:sticky lg:top-28">
                 <div>
                   <h4 className="text-xl sm:text-2xl font-black mb-3 sm:mb-4">
@@ -700,9 +723,11 @@ export default function Portfolio() {
                   View Source Code on GitHub
                 </a>
               </div>
+              )}
             </div>
           </div>
           )}
+
         </div>
       </section>
 
@@ -714,7 +739,7 @@ export default function Portfolio() {
               Hello Binada
             </p>
 
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black">CONTACT ME</h2>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black bg-gradient-to-r from-[#00658D] to-[#00AEEF] dark:from-sky-400 dark:to-cyan-300 bg-clip-text text-transparent">CONTACT ME</h2>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 relative">
@@ -828,9 +853,9 @@ export default function Portfolio() {
                   type="submit"
                   className="w-full text-white font-bold py-3.5 sm:py-4 text-sm sm:text-base hover:scale-[1.02] duration-300"
                   style={{
-                    background: '#00AEEF',
+                    background: 'linear-gradient(90deg, #00658D, #00AEEF)',
                     borderRadius: 12,
-                    boxShadow: '0px 4px 6px -4px rgba(0,0,0,0.10), 0px 10px 15px -3px rgba(0,0,0,0.10)',
+                    boxShadow: '0px 4px 6px -4px rgba(0,0,0,0.10), 0px 10px 15px -3px rgba(0,175,239,0.25)',
                     fontFamily: 'Inter, sans-serif',
                     lineHeight: 1.6,
                   }}

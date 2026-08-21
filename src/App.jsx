@@ -21,6 +21,7 @@ export default function Portfolio() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [isDeleting, setIsDeleting] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [projectFilter, setProjectFilter] = useState("All");
 
   React.useEffect(() => {
     const currentRole = roles[roleIndex];
@@ -483,21 +484,24 @@ export default function Portfolio() {
             </div>
 
             <div className="bg-white rounded-full p-2 flex gap-2 shadow-md overflow-x-auto w-full sm:w-auto">
-              <button className="px-4 sm:px-6 py-2 rounded-full bg-[#1da1f2] text-white text-sm sm:text-base whitespace-nowrap">
-                All
-              </button>
-
-              <button className="px-4 sm:px-6 py-2 rounded-full hover:bg-gray-100 text-sm sm:text-base whitespace-nowrap">
-                Design
-              </button>
-
-              <button className="px-4 sm:px-6 py-2 rounded-full hover:bg-gray-100 text-sm sm:text-base whitespace-nowrap">
-                Web
-              </button>
+              {["All", "Design", "Web"].map((filter) => (
+                <button
+                  key={filter}
+                  onClick={() => setProjectFilter(filter)}
+                  className={`px-4 sm:px-6 py-2 rounded-full text-sm sm:text-base whitespace-nowrap duration-300 ${
+                    projectFilter === filter
+                      ? "bg-[#1da1f2] text-white"
+                      : "hover:bg-gray-100"
+                  }`}
+                >
+                  {filter}
+                </button>
+              ))}
             </div>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6 sm:gap-8">
+          {(projectFilter === "All" || projectFilter === "Design") && (
+          <div className="grid md:grid-cols-2 gap-6 sm:gap-8 fade-in">
             {[
               {
                 img: "webdesign.png",
@@ -558,9 +562,10 @@ export default function Portfolio() {
               </div>
             ))}
           </div>
+          )}
 
-          {/* ================= FEATURED PROJECT - CEYLON TOURS ================= */}
-          <div className="mt-20 sm:mt-28">
+          {(projectFilter === "All" || projectFilter === "Web") && (
+          <div className="mt-20 sm:mt-28 fade-in">
             <div className="text-center mb-10 sm:mb-14">
               <p className="uppercase tracking-[5px] text-[#1da1f2] text-sm mb-4">
                 Featured Project
@@ -662,6 +667,7 @@ export default function Portfolio() {
               </div>
             </div>
           </div>
+          )}
         </div>
       </section>
 
@@ -860,6 +866,14 @@ export default function Portfolio() {
         .fade-slide:nth-child(1) { animation-delay: 0.2s; }
         .fade-slide:nth-child(2) { animation-delay: 0.6s; }
         .fade-slide:nth-child(3) { animation-delay: 1s; }
+
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(24px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in {
+          animation: fadeIn 0.5s ease forwards;
+        }
       `}</style>
     </div>
   );

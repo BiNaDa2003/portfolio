@@ -558,6 +558,110 @@ export default function Portfolio() {
               </div>
             ))}
           </div>
+
+          {/* ================= FEATURED PROJECT - CEYLON TOURS ================= */}
+          <div className="mt-20 sm:mt-28">
+            <div className="text-center mb-10 sm:mb-14">
+              <p className="uppercase tracking-[5px] text-[#1da1f2] text-sm mb-4">
+                Featured Project
+              </p>
+
+              <h3 className="text-3xl sm:text-4xl lg:text-5xl font-black mb-3">
+                Ceylon Tours
+              </h3>
+
+              <p className="text-gray-500 sm:text-lg">
+                Tour Package Booking System &middot; Full Stack Web Application
+              </p>
+            </div>
+
+            {/* VIDEO MOCKUP */}
+            <div className="relative max-w-5xl mx-auto">
+              <div className="absolute -inset-3 sm:-inset-6 bg-gradient-to-r from-[#1da1f2]/25 via-[#1da1f2]/5 to-[#1da1f2]/25 blur-2xl rounded-[48px] sm:rounded-[64px]"></div>
+
+              <div className="relative bg-gray-800 rounded-[28px] sm:rounded-[40px] p-2.5 sm:p-4 shadow-2xl">
+                <div className="flex items-center justify-between px-2 sm:px-4 pb-2.5 sm:pb-3">
+                  <div className="flex gap-1.5 sm:gap-2">
+                    <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-red-500"></div>
+                    <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-yellow-500"></div>
+                    <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-green-500"></div>
+                  </div>
+                  <div className="bg-gray-700 text-white/70 text-[10px] sm:text-xs px-3 sm:px-8 py-1 sm:py-1.5 rounded-full truncate max-w-[50%]">
+                    ceylon-tours · booking system
+                  </div>
+                  <div className="text-white/60 text-[10px] sm:text-xs whitespace-nowrap">Full Stack</div>
+                </div>
+
+                <video
+                  src="/videos/ceylon-tours-demo.mp4"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  controls
+                  preload="metadata"
+                  className="w-full rounded-[20px] sm:rounded-[32px] bg-black shadow-inner"
+                />
+              </div>
+            </div>
+
+            {/* DETAILS CARD */}
+            <div className="max-w-5xl mx-auto mt-8 sm:mt-12 bg-white rounded-[28px] sm:rounded-[36px] p-6 sm:p-10 lg:p-12 shadow-xl border border-gray-100 hover:-translate-y-1 duration-500">
+              <div className="grid lg:grid-cols-5 gap-8 lg:gap-14">
+                <div className="lg:col-span-3">
+                  <h4 className="text-xl sm:text-2xl font-black mb-4 sm:mb-5">
+                    About This Project
+                  </h4>
+
+                  <p className="text-gray-500 leading-8 mb-6 sm:mb-8">
+                    A modern and robust Tour Package Booking System built with
+                    native PHP (OOP), MySQL and Bootstrap 5 on a custom
+                    lightweight MVC architecture. Customers can browse, search
+                    and book tour packages with automatic price calculation,
+                    while a secure role-based admin panel manages packages,
+                    bookings, customers and revenue analytics.
+                  </p>
+
+                  <div className="space-y-3 sm:space-y-4 text-sm sm:text-base">
+                    <div>✔ Browse, search &amp; filter tour packages dynamically</div>
+                    <div>✔ Smart booking engine with auto pricing &amp; availability validation</div>
+                    <div>✔ Customer dashboard with live reservation tracking &amp; cancellation</div>
+                    <div>✔ Secure authentication with password hashing &amp; protected admin panel</div>
+                    <div>✔ Admin analytics — packages, bookings, customers &amp; total revenue</div>
+                  </div>
+                </div>
+
+                <div className="lg:col-span-2 flex flex-col gap-8">
+                  <div>
+                    <p className="uppercase tracking-[3px] text-xs text-gray-400 mb-4">
+                      Tech Stack
+                    </p>
+
+                    <div className="flex flex-wrap gap-2 sm:gap-3">
+                      {["PHP 8.1+ (OOP)", "MySQL + PDO", "Bootstrap 5", "JavaScript ES6+", "Custom MVC"].map((tech) => (
+                        <span
+                          key={tech}
+                          className="px-4 py-2 rounded-full bg-[#1da1f2]/10 text-[#1da1f2] text-xs sm:text-sm font-semibold"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  <a
+                    href="https://github.com/BiNaDa2003/ceylon_tours"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-auto inline-flex items-center justify-center gap-3 px-6 sm:px-8 py-3.5 sm:py-4 rounded-full bg-gray-900 text-white font-semibold hover:bg-[#1da1f2] hover:scale-[1.02] duration-300 no-underline text-sm sm:text-base"
+                  >
+                    <ExternalLink size={18} />
+                    View Source Code on GitHub
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 

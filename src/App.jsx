@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ArrowRight, Braces, Code2, Database, ExternalLink, Globe2, LayoutGrid, Menu, Palette, Smartphone, TerminalSquare, X } from "lucide-react";
+import { ArrowRight, Braces, Code2, Database, ExternalLink, Globe2, LayoutGrid, Menu, Moon, Palette, Smartphone, Sun, TerminalSquare, X } from "lucide-react";
 
 const roles = ["Full Stack Developer", "UI/UX Designer", "YouTuber"];
 
@@ -28,6 +28,16 @@ export default function Portfolio() {
   const [isDeleting, setIsDeleting] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [projectFilter, setProjectFilter] = useState("All");
+  const [dark, setDark] = useState(() => {
+    const saved = localStorage.getItem("theme");
+    if (saved) return saved === "dark";
+    return window.matchMedia("(prefers-color-scheme: dark)").matches;
+  });
+
+  React.useEffect(() => {
+    document.documentElement.classList.toggle("dark", dark);
+    localStorage.setItem("theme", dark ? "dark" : "light");
+  }, [dark]);
 
   React.useEffect(() => {
     const currentRole = roles[roleIndex];
@@ -68,12 +78,12 @@ export default function Portfolio() {
   ];
 
   return (
-    <div className="bg-[#f5f5f5] text-[#111827] overflow-x-hidden scroll-smooth">
+    <div className="bg-[#f5f5f5] dark:bg-[#0B1220] text-[#111827] dark:text-gray-100 overflow-x-hidden scroll-smooth min-h-screen transition-colors duration-300">
       {/* ================= NAVBAR ================= */}
-      <header className="fixed top-0 left-0 w-full z-50 backdrop-blur-xl bg-white/70 border-b border-gray-100">
+      <header className="fixed top-0 left-0 w-full z-50 backdrop-blur-xl bg-white/70 dark:bg-[#0B1220]/70 border-b border-gray-100 dark:border-gray-800/60 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-6 lg:px-10 py-4 flex items-center justify-between">
           <a href="#hero" className="font-bold text-[#1da1f2] text-xl tracking-wide no-underline">
-             <span style={{color: '#00658D', fontSize: 20, fontFamily: "'Hanken Grotesk', sans-serif", fontWeight: 700}}>Binada</span><span style={{color: '#00AEEF', fontSize: 20, fontFamily: "'Hanken Grotesk', sans-serif", fontWeight: 700}}>_d</span>
+             <span style={{color: dark ? '#7DD3FC' : '#00658D', fontSize: 20, fontFamily: "'Hanken Grotesk', sans-serif", fontWeight: 700}}>Binada</span><span style={{color: '#00AEEF', fontSize: 20, fontFamily: "'Hanken Grotesk', sans-serif", fontWeight: 700}}>_d</span>
           </a>
 
           <nav className="hidden md:flex items-center gap-10 text-sm font-medium">
@@ -91,6 +101,18 @@ export default function Portfolio() {
           </nav>
 
           <div className="flex items-center gap-3">
+            <button
+              onClick={() => setDark(!dark)}
+              aria-label="Toggle dark mode"
+              className={`p-2.5 rounded-full duration-300 ${
+                dark
+                  ? "text-amber-300 bg-white/10 hover:bg-white/20"
+                  : "text-gray-600 dark:text-gray-300 hover:bg-gray-200/60"
+              }`}
+            >
+              {dark ? <Sun size={20} /> : <Moon size={20} />}
+            </button>
+
             <a href="#contact" className="hidden sm:inline-block px-5 py-2 rounded-full border border-[#1da1f2] text-[#1da1f2] hover:bg-[#1da1f2] hover:text-white duration-300 no-underline">
               Contact Me
             </a>
@@ -100,7 +122,7 @@ export default function Portfolio() {
             </a>
 
             <button
-              className="md:hidden p-2 text-gray-700 hover:text-[#1da1f2] transition-colors"
+              className="md:hidden p-2 text-gray-700 dark:text-gray-200 hover:text-[#1da1f2] transition-colors"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle menu"
             >
@@ -110,7 +132,7 @@ export default function Portfolio() {
         </div>
 
         {mobileMenuOpen && (
-          <div className="md:hidden border-t border-gray-100 bg-white/95 backdrop-blur-xl">
+          <div className="md:hidden border-t border-gray-100 dark:border-gray-800/60 bg-white/95 dark:bg-[#0B1220]/95 backdrop-blur-xl">
             <div className="px-6 py-4 flex flex-col gap-3">
               {navLinks.map((item, i) => (
                 <a
@@ -161,21 +183,21 @@ export default function Portfolio() {
                 UI/UX
               </h1>
 
-              <p className="text-gray-500 mb-6 lg:mb-10">
+              <p className="text-gray-500 dark:text-gray-400 mb-6 lg:mb-10">
                 Beautifully human-centered interfaces
               </p>
 
               <div className="hidden sm:block space-y-6 lg:space-y-8">
                 <div>
                   <h3 className="font-bold text-base sm:text-lg">Travel Planner</h3>
-                  <p className="text-gray-500 text-sm">
+                  <p className="text-gray-500 dark:text-gray-400 text-sm">
                     Smart travel planning app with intuitive experiences.
                   </p>
                 </div>
 
                 <div>
                   <h3 className="font-bold text-base sm:text-lg">Health Tracker</h3>
-                  <p className="text-gray-500 text-sm">
+                  <p className="text-gray-500 dark:text-gray-400 text-sm">
                     Modern wellness tracking interfaces.
                   </p>
                 </div>
@@ -240,21 +262,21 @@ export default function Portfolio() {
                 Development
               </h1>
 
-              <p className="text-gray-500 mb-6 lg:mb-10 lg:text-right">
+              <p className="text-gray-500 dark:text-gray-400 mb-6 lg:mb-10 lg:text-right">
                 Robust, scalable applications
               </p>
 
               <div className="hidden sm:block space-y-6 lg:space-y-8 lg:text-right">
                 <div>
                   <h3 className="font-bold text-base sm:text-lg">E-Commerce Platform</h3>
-                  <p className="text-gray-500 text-sm">
+                  <p className="text-gray-500 dark:text-gray-400 text-sm">
                     Full-stack commerce apps with React & APIs.
                   </p>
                 </div>
 
                 <div>
                   <h3 className="font-bold text-base sm:text-lg">Task Manager API</h3>
-                  <p className="text-gray-500 text-sm">
+                  <p className="text-gray-500 dark:text-gray-400 text-sm">
                     Secure backend architecture for productivity apps.
                   </p>
                 </div>
@@ -280,7 +302,7 @@ export default function Portfolio() {
               It's me <span className="text-[#1da1f2]">binada_d.</span>
             </h1>
 
-            <p className="text-gray-500">
+            <p className="text-gray-500 dark:text-gray-400">
               Creative developer & UI/UX designer
             </p>
           </div>
@@ -311,7 +333,7 @@ export default function Portfolio() {
             I'm <span className="text-[#1da1f2]">Binada Basilu</span>
           </h2>
 
-          <p className="max-w-2xl mx-auto text-gray-500 leading-8 px-2">
+          <p className="max-w-2xl mx-auto text-gray-500 dark:text-gray-400 leading-8 px-2">
             Crafting digital experiences through thoughtful design and clean
             code. Welcome to my corner of the internet.
           </p>
@@ -319,21 +341,21 @@ export default function Portfolio() {
           <div className="grid grid-cols-3 gap-4 sm:gap-6 lg:gap-10 mt-12 sm:mt-16 max-w-xl mx-auto">
             <div>
               <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black">5+</h3>
-              <p className="text-gray-500 uppercase tracking-[3px] text-xs mt-2">
+              <p className="text-gray-500 dark:text-gray-400 uppercase tracking-[3px] text-xs mt-2">
                 Projects
               </p>
             </div>
 
             <div>
               <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black">1+</h3>
-              <p className="text-gray-500 uppercase tracking-[3px] text-xs mt-2">
+              <p className="text-gray-500 dark:text-gray-400 uppercase tracking-[3px] text-xs mt-2">
                 Years
               </p>
             </div>
 
             <div>
               <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black">10+</h3>
-              <p className="text-gray-500 uppercase tracking-[3px] text-xs mt-2">
+              <p className="text-gray-500 dark:text-gray-400 uppercase tracking-[3px] text-xs mt-2">
                 Clients
               </p>
             </div>
@@ -371,7 +393,7 @@ export default function Portfolio() {
               <span className="text-[#1da1f2] animate-pulse">|</span>
             </h3>
 
-            <p className="text-gray-500 leading-8 fade-slide">
+            <p className="text-gray-500 dark:text-gray-400 leading-8 fade-slide">
               I'm a designer and developer who bridges the gap between
               aesthetics and functionality. From pixel-perfect UI to robust
               backend architecture, I craft experiences that people love to use.
@@ -393,8 +415,8 @@ export default function Portfolio() {
 
           <div className="grid md:grid-cols-2 gap-6 sm:gap-10">
             {/* CARD */}
-            <div className="bg-white rounded-[24px] sm:rounded-[30px] p-6 sm:p-8 lg:p-10 shadow-xl hover:-translate-y-3 duration-500 border border-gray-100">
-              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gray-100 flex items-center justify-center mb-6 sm:mb-8">
+            <div className="bg-white dark:bg-[#111A2E] rounded-[24px] sm:rounded-[30px] p-6 sm:p-8 lg:p-10 shadow-xl hover:-translate-y-3 duration-500 border border-gray-100 dark:border-gray-800">
+              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center mb-6 sm:mb-8">
                 <img src="/images/cyberstorelk.png" alt="CyberStoreLK" className="w-8 h-8 sm:w-10 sm:h-10 object-contain" />
               </div>
 
@@ -402,7 +424,7 @@ export default function Portfolio() {
                 Cybertec Computer Solutions
               </h3>
 
-              <p className="text-gray-500 mb-6 sm:mb-10">
+              <p className="text-gray-500 dark:text-gray-400 mb-6 sm:mb-10">
                 The one store that your all needs in one store.
               </p>
 
@@ -417,14 +439,14 @@ export default function Portfolio() {
             </div>
 
             {/* CARD */}
-            <div className="bg-white rounded-[24px] sm:rounded-[30px] p-6 sm:p-8 lg:p-10 shadow-xl hover:-translate-y-3 duration-500 border border-gray-100">
+            <div className="bg-white dark:bg-[#111A2E] rounded-[24px] sm:rounded-[30px] p-6 sm:p-8 lg:p-10 shadow-xl hover:-translate-y-3 duration-500 border border-gray-100 dark:border-gray-800">
               <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-green-100 flex items-center justify-center mb-6 sm:mb-8">
                 <img src="https://cdn.worldvectorlogo.com/logos/fiverr-1.svg" alt="Fiverr" className="w-8 h-8 sm:w-10 sm:h-10 object-contain" />
               </div>
 
               <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black mb-4 sm:mb-5">Fiverr</h3>
 
-              <p className="text-gray-500 mb-6 sm:mb-10">
+              <p className="text-gray-500 dark:text-gray-400 mb-6 sm:mb-10">
                 UI/UX and frontend web development jobs in Fiverr.
               </p>
 
@@ -441,10 +463,10 @@ export default function Portfolio() {
 
           <div className="mt-10 sm:mt-14">
             <div className="flex items-center justify-between gap-3 mb-4">
-              <p className="text-sm sm:text-base font-semibold text-gray-700">
+              <p className="text-sm sm:text-base font-semibold text-gray-700 dark:text-gray-300">
                 Languages & tools I work with
               </p>
-              <span className="text-xs sm:text-sm text-gray-500 whitespace-nowrap">
+              <span className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 whitespace-nowrap">
                 Scroll horizontally →
               </span>
             </div>
@@ -456,12 +478,12 @@ export default function Portfolio() {
                   return (
                     <div
                       key={`${item.label}-${index}`}
-                      className="flex items-center gap-2 sm:gap-3 rounded-full bg-white border border-gray-100 px-4 sm:px-5 py-3 shadow-sm"
+                      className="flex items-center gap-2 sm:gap-3 rounded-full bg-white dark:bg-[#111A2E] border border-gray-100 dark:border-gray-800 px-4 sm:px-5 py-3 shadow-sm"
                     >
                       <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#1da1f2]/10 text-[#1da1f2]">
                         <Icon size={18} />
                       </span>
-                      <span className="text-sm sm:text-base font-semibold text-gray-800">
+                      <span className="text-sm sm:text-base font-semibold text-gray-800 dark:text-gray-200">
                         {item.label}
                       </span>
                     </div>
@@ -489,7 +511,7 @@ export default function Portfolio() {
               </h2>
             </div>
 
-            <div className="bg-white rounded-full p-2 flex gap-1.5 sm:gap-2 shadow-md overflow-x-auto w-full sm:w-auto">
+            <div className="bg-white dark:bg-[#111A2E] rounded-full p-2 flex gap-1.5 sm:gap-2 shadow-md overflow-x-auto w-full sm:w-auto">
               {projectFilters.map(({ label, icon: Icon }) => (
                 <button
                   key={label}
@@ -497,7 +519,7 @@ export default function Portfolio() {
                   className={`flex items-center gap-2 px-4 sm:px-6 py-2 rounded-full text-sm sm:text-base whitespace-nowrap duration-300 ${
                     projectFilter === label
                       ? "bg-[#1da1f2] text-white shadow-lg shadow-[#1da1f2]/30 scale-[1.03]"
-                      : "hover:bg-gray-100 text-gray-600"
+                      : "hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300"
                   }`}
                 >
                   <Icon size={16} />
@@ -582,7 +604,7 @@ export default function Portfolio() {
                 Ceylon Tours
               </h3>
 
-              <p className="text-gray-500 sm:text-lg">
+              <p className="text-gray-500 dark:text-gray-400 sm:text-lg">
                 Tour Package Booking System &middot; Full Stack Web Application
               </p>
             </div>
@@ -618,13 +640,13 @@ export default function Portfolio() {
                 </div>
               </div>
 
-              <div className="lg:col-span-2 bg-white rounded-[24px] sm:rounded-[32px] p-6 sm:p-8 shadow-xl border border-gray-100 flex flex-col gap-6 sm:gap-7 hover:-translate-y-1 duration-500 lg:sticky lg:top-28">
+              <div className="lg:col-span-2 bg-white dark:bg-[#111A2E] rounded-[24px] sm:rounded-[32px] p-6 sm:p-8 shadow-xl border border-gray-100 dark:border-gray-800 flex flex-col gap-6 sm:gap-7 hover:-translate-y-1 duration-500 lg:sticky lg:top-28">
                 <div>
                   <h4 className="text-xl sm:text-2xl font-black mb-3 sm:mb-4">
                     About This Project
                   </h4>
 
-                  <p className="text-gray-500 leading-7 sm:leading-8 text-sm sm:text-base">
+                  <p className="text-gray-500 dark:text-gray-400 leading-7 sm:leading-8 text-sm sm:text-base">
                     A modern and robust Tour Package Booking System built with
                     native PHP (OOP), MySQL and Bootstrap 5 on a custom
                     lightweight MVC architecture. Customers can browse, search
@@ -646,7 +668,7 @@ export default function Portfolio() {
                       <span className="mt-0.5 w-5 h-5 rounded-full bg-[#1da1f2]/10 text-[#1da1f2] flex items-center justify-center text-[11px] font-bold shrink-0">
                         ✓
                       </span>
-                      <span className="text-gray-600 text-sm leading-6">{feature}</span>
+                      <span className="text-gray-600 dark:text-gray-300 text-sm leading-6">{feature}</span>
                     </div>
                   ))}
                 </div>
@@ -672,7 +694,7 @@ export default function Portfolio() {
                   href="https://github.com/BiNaDa2003/ceylon_tours"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-auto inline-flex items-center justify-center gap-3 px-6 py-3.5 rounded-full bg-gray-900 text-white font-semibold hover:bg-[#1da1f2] hover:scale-[1.02] duration-300 no-underline text-sm"
+                  className="mt-auto inline-flex items-center justify-center gap-3 px-6 py-3.5 rounded-full bg-gray-900 dark:bg-white dark:text-gray-900 text-white font-semibold hover:bg-[#1da1f2] dark:hover:bg-[#1da1f2] dark:hover:text-white hover:scale-[1.02] duration-300 no-underline text-sm"
                 >
                   <ExternalLink size={18} />
                   View Source Code on GitHub
@@ -702,7 +724,7 @@ export default function Portfolio() {
                 CONNECT
               </p>
 
-              <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-0" style={{ color: '#191C1E', fontFamily: "'Hanken Grotesk', sans-serif", lineHeight: 1.2 }}>
+              <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-0" style={{ color: dark ? '#F9FAFB' : '#191C1E', fontFamily: "'Hanken Grotesk', sans-serif", lineHeight: 1.2 }}>
                 Let&apos;s stay in touch
               </h3>
 
@@ -722,9 +744,9 @@ export default function Portfolio() {
                     rel="noopener noreferrer"
                     className="flex flex-col items-center text-center cursor-pointer group"
                     style={{
-                      background: 'rgba(255,255,255,0.70)',
+                      background: dark ? 'rgba(17,26,46,0.70)' : 'rgba(255,255,255,0.70)',
                       borderRadius: 16,
-                      outline: '1px solid white',
+                      outline: dark ? '1px solid rgba(255,255,255,0.08)' : '1px solid white',
                       outlineOffset: -1,
                       backdropFilter: 'blur(10px)',
                       WebkitBackdropFilter: 'blur(10px)',
@@ -736,7 +758,7 @@ export default function Portfolio() {
                     </div>
                     <p
                       className="text-[10px] sm:text-xs mt-2 leading-tight"
-                      style={{ color: '#3E4850', fontFamily: "'JetBrains Mono', monospace", fontWeight: 500, letterSpacing: '0.65px' }}
+                      style={{ color: dark ? '#9CA3AF' : '#3E4850', fontFamily: "'JetBrains Mono', monospace", fontWeight: 500, letterSpacing: '0.65px' }}
                       dangerouslySetInnerHTML={{ __html: item.sub }}
                     />
                   </a>
@@ -751,9 +773,9 @@ export default function Portfolio() {
             {/* RIGHT */}
             <div
               style={{
-                background: 'rgba(255,255,255,0.70)',
+                background: dark ? 'rgba(17,26,46,0.70)' : 'rgba(255,255,255,0.70)',
                 borderRadius: 32,
-                outline: '1px solid rgba(255,255,255,0.60)',
+                outline: dark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(255,255,255,0.60)',
                 outlineOffset: -1,
                 backdropFilter: 'blur(10px)',
                 WebkitBackdropFilter: 'blur(10px)',
@@ -761,44 +783,44 @@ export default function Portfolio() {
               }}
               className="p-6 sm:p-8 lg:p-10"
             >
-              <h3 className="text-lg sm:text-xl font-semibold mb-6 sm:mb-8" style={{ color: '#191C1E', fontFamily: "'Hanken Grotesk', sans-serif" }}>
+              <h3 className="text-lg sm:text-xl font-semibold mb-6 sm:mb-8" style={{ color: dark ? '#F9FAFB' : '#191C1E', fontFamily: "'Hanken Grotesk', sans-serif" }}>
                 Start a conversation
               </h3>
 
               <form onSubmit={handleSend} className="space-y-5 sm:space-y-6">
                 <div>
-                  <p className="text-xs mb-1 pl-1" style={{ color: '#3E4850', fontFamily: "'JetBrains Mono', monospace", fontWeight: 500, letterSpacing: '0.65px' }}>Full Name</p>
+                  <p className="text-xs mb-1 pl-1" style={{ color: dark ? '#9CA3AF' : '#3E4850', fontFamily: "'JetBrains Mono', monospace", fontWeight: 500, letterSpacing: '0.65px' }}>Full Name</p>
                   <input
                     type="text"
                     placeholder="John Doe"
                     value={form.name}
                     onChange={(e) => setForm({ ...form, name: e.target.value })}
                     className="w-full bg-transparent px-3 py-3 outline-none"
-                    style={{ borderBottom: '1px solid #BDC8D1', color: '#6B7280', fontSize: 16, fontFamily: 'Inter, sans-serif', fontWeight: 400 }}
+                    style={{ borderBottom: dark ? '1px solid #374151' : '1px solid #BDC8D1', color: dark ? '#D1D5DB' : '#6B7280', fontSize: 16, fontFamily: 'Inter, sans-serif', fontWeight: 400 }}
                   />
                 </div>
 
                 <div>
-                  <p className="text-xs mb-1 pl-1" style={{ color: '#3E4850', fontFamily: "'JetBrains Mono', monospace", fontWeight: 500, letterSpacing: '0.65px' }}>Email Address</p>
+                  <p className="text-xs mb-1 pl-1" style={{ color: dark ? '#9CA3AF' : '#3E4850', fontFamily: "'JetBrains Mono', monospace", fontWeight: 500, letterSpacing: '0.65px' }}>Email Address</p>
                   <input
                     type="email"
                     placeholder="john@example.com"
                     value={form.email}
                     onChange={(e) => setForm({ ...form, email: e.target.value })}
                     className="w-full bg-transparent px-3 py-3 outline-none"
-                    style={{ borderBottom: '1px solid #BDC8D1', color: '#6B7280', fontSize: 16, fontFamily: 'Inter, sans-serif', fontWeight: 400 }}
+                    style={{ borderBottom: dark ? '1px solid #374151' : '1px solid #BDC8D1', color: dark ? '#D1D5DB' : '#6B7280', fontSize: 16, fontFamily: 'Inter, sans-serif', fontWeight: 400 }}
                   />
                 </div>
 
                 <div>
-                  <p className="text-xs mb-1 pl-1" style={{ color: '#3E4850', fontFamily: "'JetBrains Mono', monospace", fontWeight: 500, letterSpacing: '0.65px' }}>Message</p>
+                  <p className="text-xs mb-1 pl-1" style={{ color: dark ? '#9CA3AF' : '#3E4850', fontFamily: "'JetBrains Mono', monospace", fontWeight: 500, letterSpacing: '0.65px' }}>Message</p>
                   <textarea
                     rows="4"
                     placeholder="What's on your mind?  Hello Binada......."
                     value={form.message}
                     onChange={(e) => setForm({ ...form, message: e.target.value })}
                     className="w-full bg-transparent px-3 py-2.5 outline-none resize-none"
-                    style={{ borderBottom: '1px solid #BDC8D1', color: '#6B7280', fontSize: 16, fontFamily: 'Inter, sans-serif', fontWeight: 400, lineHeight: 1.6 }}
+                    style={{ borderBottom: dark ? '1px solid #374151' : '1px solid #BDC8D1', color: dark ? '#D1D5DB' : '#6B7280', fontSize: 16, fontFamily: 'Inter, sans-serif', fontWeight: 400, lineHeight: 1.6 }}
                   ></textarea>
                 </div>
 
@@ -826,19 +848,19 @@ export default function Portfolio() {
       </section>
 
       {/* ================= FOOTER ================= */}
-      <footer className="py-10 border-t border-gray-200">
+      <footer className="py-10 border-t border-gray-200 dark:border-gray-800/60">
         <div className="max-w-6xl mx-auto px-6 flex flex-col lg:flex-row items-center justify-between gap-6">
-          <h1 className="font-black text-xl"><span style={{color: '#00658D'}}>Binada</span><span style={{color: '#00AEEF'}}>_d</span></h1>
+          <h1 className="font-black text-xl"><span style={{color: dark ? '#7DD3FC' : '#00658D'}}>Binada</span><span style={{color: '#00AEEF'}}>_d</span></h1>
 
-          <div className="flex flex-wrap justify-center gap-4 sm:gap-8 text-sm text-gray-500">
+          <div className="flex flex-wrap justify-center gap-4 sm:gap-8 text-sm text-gray-500 dark:text-gray-400">
             <a href="https://github.com/BiNaDa2003" target="_blank" rel="noopener noreferrer" className="hover:text-[#1da1f2] duration-300">GitHub</a>
             <a href="https://www.linkedin.com/in/binada-dewndara-640440244" target="_blank" rel="noopener noreferrer" className="hover:text-[#1da1f2] duration-300">LinkedIn</a>
             <a href="https://www.youtube.com/@BinadaDewundara" target="_blank" rel="noopener noreferrer" className="hover:text-[#1da1f2] duration-300">YouTube</a>
             <a href="https://www.facebook.com/binada.basilu/" target="_blank" rel="noopener noreferrer" className="hover:text-[#1da1f2] duration-300">Facebook</a>
           </div>
 
-          <p className="text-gray-500 text-sm text-center">
-            © 2026 <span style={{color: '#00658D'}}>Binada</span><span style={{color: '#00AEEF'}}>_d</span>. All rights reserved.
+          <p className="text-gray-500 dark:text-gray-400 text-sm text-center">
+            © 2026 <span style={{color: dark ? '#7DD3FC' : '#00658D'}}>Binada</span><span style={{color: '#00AEEF'}}>_d</span>. All rights reserved.
           </p>
         </div>
 

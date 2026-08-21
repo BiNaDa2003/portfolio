@@ -14,6 +14,12 @@ const techStacks = [
   { label: "Web Apps", icon: Globe2 },
 ];
 
+const projectFilters = [
+  { label: "All", icon: LayoutGrid },
+  { label: "Design", icon: Palette },
+  { label: "Web", icon: Code2 },
+];
+
 export default function Portfolio() {
   const [hoverHero, setHoverHero] = useState(false);
   const [roleIndex, setRoleIndex] = useState(0);
@@ -483,18 +489,19 @@ export default function Portfolio() {
               </h2>
             </div>
 
-            <div className="bg-white rounded-full p-2 flex gap-2 shadow-md overflow-x-auto w-full sm:w-auto">
-              {["All", "Design", "Web"].map((filter) => (
+            <div className="bg-white rounded-full p-2 flex gap-1.5 sm:gap-2 shadow-md overflow-x-auto w-full sm:w-auto">
+              {projectFilters.map(({ label, icon: Icon }) => (
                 <button
-                  key={filter}
-                  onClick={() => setProjectFilter(filter)}
-                  className={`px-4 sm:px-6 py-2 rounded-full text-sm sm:text-base whitespace-nowrap duration-300 ${
-                    projectFilter === filter
-                      ? "bg-[#1da1f2] text-white"
-                      : "hover:bg-gray-100"
+                  key={label}
+                  onClick={() => setProjectFilter(label)}
+                  className={`flex items-center gap-2 px-4 sm:px-6 py-2 rounded-full text-sm sm:text-base whitespace-nowrap duration-300 ${
+                    projectFilter === label
+                      ? "bg-[#1da1f2] text-white shadow-lg shadow-[#1da1f2]/30 scale-[1.03]"
+                      : "hover:bg-gray-100 text-gray-600"
                   }`}
                 >
-                  {filter}
+                  <Icon size={16} />
+                  {label}
                 </button>
               ))}
             </div>
@@ -580,45 +587,44 @@ export default function Portfolio() {
               </p>
             </div>
 
-            {/* VIDEO MOCKUP */}
-            <div className="relative max-w-5xl mx-auto">
-              <div className="absolute -inset-3 sm:-inset-6 bg-gradient-to-r from-[#1da1f2]/25 via-[#1da1f2]/5 to-[#1da1f2]/25 blur-2xl rounded-[48px] sm:rounded-[64px]"></div>
+            {/* VIDEO (LEFT) + DETAILS (RIGHT) */}
+            <div className="max-w-6xl mx-auto grid lg:grid-cols-5 gap-8 lg:gap-10 items-start">
+              <div className="lg:col-span-3 relative">
+                <div className="absolute -inset-2 sm:-inset-4 bg-gradient-to-r from-[#1da1f2]/25 via-[#1da1f2]/5 to-[#1da1f2]/25 blur-2xl rounded-[40px]"></div>
 
-              <div className="relative bg-gray-800 rounded-[28px] sm:rounded-[40px] p-2.5 sm:p-4 shadow-2xl">
-                <div className="flex items-center justify-between px-2 sm:px-4 pb-2.5 sm:pb-3">
-                  <div className="flex gap-1.5 sm:gap-2">
-                    <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-red-500"></div>
-                    <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-yellow-500"></div>
-                    <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-green-500"></div>
+                <div className="relative bg-gray-800 rounded-[24px] sm:rounded-[32px] p-2 sm:p-3 shadow-2xl">
+                  <div className="flex items-center justify-between px-2 sm:px-3 pb-2 sm:pb-2.5">
+                    <div className="flex gap-1.5 sm:gap-2">
+                      <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-red-500"></div>
+                      <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-yellow-500"></div>
+                      <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-green-500"></div>
+                    </div>
+                    <div className="bg-gray-700 text-white/70 text-[10px] sm:text-xs px-3 sm:px-8 py-1 sm:py-1.5 rounded-full truncate max-w-[50%]">
+                      ceylon-tours · booking system
+                    </div>
+                    <div className="text-white/60 text-[10px] sm:text-xs whitespace-nowrap">Full Stack</div>
                   </div>
-                  <div className="bg-gray-700 text-white/70 text-[10px] sm:text-xs px-3 sm:px-8 py-1 sm:py-1.5 rounded-full truncate max-w-[50%]">
-                    ceylon-tours · booking system
-                  </div>
-                  <div className="text-white/60 text-[10px] sm:text-xs whitespace-nowrap">Full Stack</div>
+
+                  <video
+                    src="/videos/ceylon-tours-demo.mp4"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    controls
+                    preload="metadata"
+                    className="w-full rounded-[16px] sm:rounded-[24px] bg-black shadow-inner"
+                  />
                 </div>
-
-                <video
-                  src="/videos/ceylon-tours-demo.mp4"
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  controls
-                  preload="metadata"
-                  className="w-full rounded-[20px] sm:rounded-[32px] bg-black shadow-inner"
-                />
               </div>
-            </div>
 
-            {/* DETAILS CARD */}
-            <div className="max-w-5xl mx-auto mt-8 sm:mt-12 bg-white rounded-[28px] sm:rounded-[36px] p-6 sm:p-10 lg:p-12 shadow-xl border border-gray-100 hover:-translate-y-1 duration-500">
-              <div className="grid lg:grid-cols-5 gap-8 lg:gap-14">
-                <div className="lg:col-span-3">
-                  <h4 className="text-xl sm:text-2xl font-black mb-4 sm:mb-5">
+              <div className="lg:col-span-2 bg-white rounded-[24px] sm:rounded-[32px] p-6 sm:p-8 shadow-xl border border-gray-100 flex flex-col gap-6 sm:gap-7 hover:-translate-y-1 duration-500 lg:sticky lg:top-28">
+                <div>
+                  <h4 className="text-xl sm:text-2xl font-black mb-3 sm:mb-4">
                     About This Project
                   </h4>
 
-                  <p className="text-gray-500 leading-8 mb-6 sm:mb-8">
+                  <p className="text-gray-500 leading-7 sm:leading-8 text-sm sm:text-base">
                     A modern and robust Tour Package Booking System built with
                     native PHP (OOP), MySQL and Bootstrap 5 on a custom
                     lightweight MVC architecture. Customers can browse, search
@@ -626,44 +632,51 @@ export default function Portfolio() {
                     while a secure role-based admin panel manages packages,
                     bookings, customers and revenue analytics.
                   </p>
-
-                  <div className="space-y-3 sm:space-y-4 text-sm sm:text-base">
-                    <div>✔ Browse, search &amp; filter tour packages dynamically</div>
-                    <div>✔ Smart booking engine with auto pricing &amp; availability validation</div>
-                    <div>✔ Customer dashboard with live reservation tracking &amp; cancellation</div>
-                    <div>✔ Secure authentication with password hashing &amp; protected admin panel</div>
-                    <div>✔ Admin analytics — packages, bookings, customers &amp; total revenue</div>
-                  </div>
                 </div>
 
-                <div className="lg:col-span-2 flex flex-col gap-8">
-                  <div>
-                    <p className="uppercase tracking-[3px] text-xs text-gray-400 mb-4">
-                      Tech Stack
-                    </p>
-
-                    <div className="flex flex-wrap gap-2 sm:gap-3">
-                      {["PHP 8.1+ (OOP)", "MySQL + PDO", "Bootstrap 5", "JavaScript ES6+", "Custom MVC"].map((tech) => (
-                        <span
-                          key={tech}
-                          className="px-4 py-2 rounded-full bg-[#1da1f2]/10 text-[#1da1f2] text-xs sm:text-sm font-semibold"
-                        >
-                          {tech}
-                        </span>
-                      ))}
+                <div className="space-y-3">
+                  {[
+                    "Browse, search & filter packages dynamically",
+                    "Smart booking engine with auto pricing",
+                    "Customer dashboard with reservation tracking",
+                    "Secure auth & protected admin panel",
+                    "Admin analytics & revenue overview",
+                  ].map((feature) => (
+                    <div key={feature} className="flex items-start gap-3">
+                      <span className="mt-0.5 w-5 h-5 rounded-full bg-[#1da1f2]/10 text-[#1da1f2] flex items-center justify-center text-[11px] font-bold shrink-0">
+                        ✓
+                      </span>
+                      <span className="text-gray-600 text-sm leading-6">{feature}</span>
                     </div>
-                  </div>
-
-                  <a
-                    href="https://github.com/BiNaDa2003/ceylon_tours"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-auto inline-flex items-center justify-center gap-3 px-6 sm:px-8 py-3.5 sm:py-4 rounded-full bg-gray-900 text-white font-semibold hover:bg-[#1da1f2] hover:scale-[1.02] duration-300 no-underline text-sm sm:text-base"
-                  >
-                    <ExternalLink size={18} />
-                    View Source Code on GitHub
-                  </a>
+                  ))}
                 </div>
+
+                <div>
+                  <p className="uppercase tracking-[3px] text-xs text-gray-400 mb-3">
+                    Tech Stack
+                  </p>
+
+                  <div className="flex flex-wrap gap-2">
+                    {["PHP 8.1+", "MySQL · PDO", "Bootstrap 5", "JS ES6+", "MVC"].map((tech) => (
+                      <span
+                        key={tech}
+                        className="px-3.5 py-1.5 rounded-full bg-[#1da1f2]/10 text-[#1da1f2] text-xs font-semibold"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <a
+                  href="https://github.com/BiNaDa2003/ceylon_tours"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-auto inline-flex items-center justify-center gap-3 px-6 py-3.5 rounded-full bg-gray-900 text-white font-semibold hover:bg-[#1da1f2] hover:scale-[1.02] duration-300 no-underline text-sm"
+                >
+                  <ExternalLink size={18} />
+                  View Source Code on GitHub
+                </a>
               </div>
             </div>
           </div>

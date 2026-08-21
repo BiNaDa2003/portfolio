@@ -388,7 +388,7 @@ export default function Portfolio() {
             {/* CARD */}
             <div className="bg-white rounded-[24px] sm:rounded-[30px] p-6 sm:p-8 lg:p-10 shadow-xl hover:-translate-y-3 duration-500 border border-gray-100">
               <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gray-100 flex items-center justify-center mb-6 sm:mb-8">
-                <img src="/images/cybertec.jpg" alt="Cybertec" className="w-8 h-8 sm:w-10 sm:h-10 object-contain" />
+                <img src="CyberStoreLK.png" alt="Cybertec" className="w-8 h-8 sm:w-10 sm:h-10 object-contain" />
               </div>
 
               <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black mb-4 sm:mb-5">

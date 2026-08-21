@@ -657,7 +657,7 @@ export default function Portfolio() {
               : "max-w-3xl mx-auto"}>
               <div className={projectFilter === "Web" ? "lg:col-span-3 flex flex-col gap-8 sm:gap-10" : "flex flex-col gap-8 sm:gap-10"}>
                 <ShotFrame
-                  videoSrc="/images/Screen%20Recording%202026-08-21%20161919.mp4"
+                  videoSrc="/images/ceylon-tours-demo.mp4"
                   caption="Customer Panel — Tour Packages & Booking"
                 />
               </div>

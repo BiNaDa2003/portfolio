@@ -31,3 +31,6 @@ pnpm-debug.log*
 
 # Vercel
 .vercel
+
+# Keep the original high-resolution recording local; the optimized copy is committed.
+public/images/Screen Recording 2026-08-21 161919.mp4

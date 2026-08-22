@@ -934,9 +934,16 @@ export default function Portfolio() {
         }`}
         aria-hidden={!isLoading}
       >
-        <div className="flex items-center text-2xl sm:text-4xl font-black tracking-tight">
-          <span className="text-[#00658D] dark:text-sky-300">{loaderText}</span>
-          <span className="ml-1 h-8 sm:h-10 w-0.5 bg-[#00AEEF] animate-pulse" aria-hidden="true" />
+        <div className="flex flex-col items-center gap-5 text-2xl sm:text-4xl font-black tracking-tight">
+          <img
+            src="/images/hero.jpg"
+            alt="Binada portfolio"
+            className="loader-hero-image w-56 sm:w-72 max-w-[78vw] object-contain"
+          />
+          <div className="flex items-center justify-center">
+            <span className="text-[#00658D] dark:text-sky-300">{loaderText}</span>
+            <span className="ml-1 h-8 sm:h-10 w-0.5 bg-[#00AEEF] animate-pulse" aria-hidden="true" />
+          </div>
         </div>
       </div>
 
@@ -948,6 +955,15 @@ export default function Portfolio() {
         }
         .animate-float {
           animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes loaderPopup {
+          0% { opacity: 0; transform: scale(0.45) translateY(18px); }
+          70% { opacity: 1; transform: scale(1.08) translateY(-2px); }
+          100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        .loader-hero-image {
+          animation: loaderPopup 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
         }
 
         @keyframes slideUp {

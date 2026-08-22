@@ -487,7 +487,7 @@ export default function Portfolio() {
               </div>
 
               <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black mb-4 sm:mb-5">
-                Cybertec Computer Solutions
+                CyberStoreLK
               </h3>
 
               <p className="text-gray-500 dark:text-gray-400 mb-6 sm:mb-10">

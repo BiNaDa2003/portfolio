@@ -23,9 +23,7 @@ const projectFilters = [
 function ShotFrame({ src, videoSrc, caption }) {
   return (
     <div className="relative group">
-      <div className="absolute -inset-2 sm:-inset-4 bg-gradient-to-r from-[#1da1f2]/25 via-[#1da1f2]/5 to-[#1da1f2]/25 blur-2xl rounded-[40px]"></div>
-
-      <div className="relative bg-gray-800 rounded-[20px] sm:rounded-[28px] p-2 sm:p-3 shadow-2xl hover:scale-[1.01] duration-500">
+      <div className="relative bg-gray-900 rounded-[16px] sm:rounded-[24px] p-2 sm:p-3 shadow-2xl ring-1 ring-white/10 hover:scale-[1.01] duration-500">
         <div className="flex items-center justify-between px-2 pb-2 sm:pb-2.5">
           <div className="flex gap-1.5 sm:gap-2">
             <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-red-500"></div>
@@ -138,12 +136,12 @@ export default function Portfolio() {
   ];
 
   return (
-    <div className="portfolio-shell bg-[#f5f5f5] dark:bg-[#0B1220] text-[#111827] dark:text-gray-100 overflow-x-hidden scroll-smooth min-h-screen transition-colors duration-300">
+    <div className="portfolio-shell bg-[#f5f5f5] dark:bg-[#050505] text-[#111827] dark:text-gray-100 overflow-x-hidden scroll-smooth min-h-screen transition-colors duration-300">
       {/* ================= NAVBAR ================= */}
-      <header className="fixed top-0 left-0 w-full z-50 backdrop-blur-xl bg-white/70 dark:bg-[#0B1220]/70 border-b border-gray-100 dark:border-gray-800/60 shadow-sm shadow-black/5 dark:shadow-none transition-colors duration-300">
+      <header className="fixed top-0 left-0 w-full z-50 backdrop-blur-xl bg-white/70 dark:bg-[#050505]/70 border-b border-gray-100 dark:border-white/[0.06] shadow-sm shadow-black/5 dark:shadow-none transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-6 lg:px-10 py-4 flex items-center justify-between">
           <a href="#hero" className="font-bold text-[#1da1f2] text-xl tracking-wide no-underline">
-             <span style={{color: dark ? '#7DD3FC' : '#00658D', fontSize: 20, fontFamily: "'Hanken Grotesk', sans-serif", fontWeight: 700}}>Binada</span><span style={{color: '#00AEEF', fontSize: 20, fontFamily: "'Hanken Grotesk', sans-serif", fontWeight: 700}}>_d</span>
+             <span style={{color: dark ? '#3EC1F3' : '#00658D', fontSize: 20, fontFamily: "'Hanken Grotesk', sans-serif", fontWeight: 700}}>Binada</span><span style={{color: '#00AEEF', fontSize: 20, fontFamily: "'Hanken Grotesk', sans-serif", fontWeight: 700}}>_d</span>
           </a>
 
           <nav className="hidden md:flex items-center gap-10 text-sm font-medium">
@@ -192,7 +190,7 @@ export default function Portfolio() {
         </div>
 
         {mobileMenuOpen && (
-          <div className="md:hidden border-t border-gray-100 dark:border-gray-800/60 bg-white/95 dark:bg-[#0B1220]/95 backdrop-blur-xl">
+          <div className="md:hidden border-t border-gray-100 dark:border-white/[0.06] bg-white/95 dark:bg-[#0a0a0a]/95 backdrop-blur-xl">
             <div className="px-6 py-4 flex flex-col gap-3">
               {navLinks.map((item, i) => (
                 <a
@@ -224,9 +222,9 @@ export default function Portfolio() {
         onMouseEnter={() => setHoverHero(true)}
         onMouseLeave={() => setHoverHero(false)}
       >
-        <div className="pointer-events-none absolute -top-24 -left-40 w-[480px] h-[480px] rounded-full bg-gradient-to-br from-[#00AEEF]/20 to-transparent blur-3xl"></div>
-        <div className="pointer-events-none absolute top-1/3 -right-48 w-[520px] h-[520px] rounded-full bg-gradient-to-bl from-[#7DD3FC]/25 to-transparent blur-3xl"></div>
-        <div className="pointer-events-none absolute bottom-0 left-1/3 w-[400px] h-[300px] rounded-full bg-gradient-to-t from-[#00658D]/10 to-transparent blur-3xl"></div>
+        <div className="pointer-events-none absolute -top-24 -left-40 w-[480px] h-[480px] rounded-full bg-gradient-to-br from-[#00AEEF]/10 to-transparent blur-3xl"></div>
+        <div className="pointer-events-none absolute top-1/3 -right-48 w-[520px] h-[520px] rounded-full bg-gradient-to-bl from-[#7DD3FC]/10 to-transparent blur-3xl"></div>
+        <div className="pointer-events-none absolute bottom-0 left-1/3 w-[400px] h-[300px] rounded-full bg-gradient-to-t from-[#00658D]/[0.07] to-transparent blur-3xl"></div>
 
         <div className="max-w-7xl mx-auto w-full flex flex-col items-center justify-center gap-8 lg:gap-6 relative">
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-center w-full lg:relative lg:min-h-[500px]">
@@ -277,9 +275,9 @@ export default function Portfolio() {
               <div
                 className={`absolute rounded-full transition-all duration-700 ${
                   hoverHero
-                    ? "w-[250px] h-[250px] sm:w-[350px] sm:h-[350px] lg:w-[450px] lg:h-[450px] bg-[#1da1f2]/20 blur-[100px]"
-                    : "w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] lg:w-[800px] lg:h-[800px] bg-[#1da1f2]/10 blur-[150px]"
-                } animate-pulse`}
+                    ? "w-[250px] h-[250px] sm:w-[350px] sm:h-[350px] lg:w-[450px] lg:h-[450px] bg-[#1da1f2]/10 blur-[100px]"
+                    : "w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] lg:w-[800px] lg:h-[800px] bg-[#1da1f2]/[0.06] blur-[150px]"
+                }`}
               ></div>
 
               <img
@@ -291,23 +289,6 @@ export default function Portfolio() {
                   transform: hoverHero ? "scale(0.45)" : "scale(1)",
                 }}
               />
-
-              {/* Floating Elements */}
-              <div
-                className={`absolute top-[5%] left-[5%] animate-bounce text-orange-500 font-black text-2xl sm:text-3xl transition-all duration-700 ${
-                  hoverHero ? "lg:opacity-100" : "lg:opacity-0"
-                }`}
-              >
-                ⚡
-              </div>
-
-              <div
-                className={`absolute bottom-[5%] right-[5%] animate-pulse text-[#1da1f2] font-black text-2xl sm:text-3xl transition-all duration-700 ${
-                  hoverHero ? "lg:opacity-100" : "lg:opacity-0"
-                }`}
-              >
-                ✦
-              </div>
             </div>
 
             {/* RIGHT SIDE - mobile: in flow, desktop: absolute */}
@@ -363,7 +344,7 @@ export default function Portfolio() {
             }`}
           >
             <h1 className="text-3xl sm:text-4xl font-black mb-2">
-              It's me <span className="bg-gradient-to-r from-[#00658D] to-[#00AEEF] dark:from-sky-400 dark:to-cyan-300 bg-clip-text text-transparent">binada_d.</span>
+              It's me <span className="accent-text">binada_d.</span>
             </h1>
 
             <p className="text-gray-500 dark:text-gray-400">
@@ -382,8 +363,8 @@ export default function Portfolio() {
               style={{
                 width: '90%', height: '90%',
                 left: '7%', top: '4%',
-                boxShadow: "0 0 30px 8px rgba(14, 165, 233, 0.4), 0 0 60px 20px rgba(14, 165, 233, 0.15)",
-                outline: "4px solid #0EA5E9",
+                boxShadow: dark ? "0 25px 60px rgba(0,0,0,0.55)" : "0 0 30px 8px rgba(14,165,233,0.4), 0 0 60px 20px rgba(14,165,233,0.15)",
+                outline: dark ? "1px solid rgba(62,193,243,0.35)" : "4px solid #0EA5E9",
               }}
             >
               <img
@@ -396,7 +377,7 @@ export default function Portfolio() {
           </div>
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-5">
-            I'm <span className="bg-gradient-to-r from-[#00658D] to-[#00AEEF] dark:from-sky-400 dark:to-cyan-300 bg-clip-text text-transparent">Binada Basilu</span>
+            I'm <span className="accent-text">Binada Basilu</span>
           </h2>
 
           <p className="max-w-2xl mx-auto text-gray-500 dark:text-gray-400 leading-8 px-2">
@@ -406,21 +387,21 @@ export default function Portfolio() {
 
           <div className="grid grid-cols-3 gap-4 sm:gap-6 lg:gap-10 mt-12 sm:mt-16 max-w-xl mx-auto">
             <div>
-              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black bg-gradient-to-r from-[#00658D] to-[#00AEEF] dark:from-sky-400 dark:to-cyan-300 bg-clip-text text-transparent">5+</h3>
+              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black accent-text">5+</h3>
               <p className="text-gray-500 dark:text-gray-400 uppercase tracking-[3px] text-xs mt-2">
                 Projects
               </p>
             </div>
 
             <div>
-              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black bg-gradient-to-r from-[#00658D] to-[#00AEEF] dark:from-sky-400 dark:to-cyan-300 bg-clip-text text-transparent">1+</h3>
+              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black accent-text">1+</h3>
               <p className="text-gray-500 dark:text-gray-400 uppercase tracking-[3px] text-xs mt-2">
                 Years
               </p>
             </div>
 
             <div>
-              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black bg-gradient-to-r from-[#00658D] to-[#00AEEF] dark:from-sky-400 dark:to-cyan-300 bg-clip-text text-transparent">10+</h3>
+              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black accent-text">10+</h3>
               <p className="text-gray-500 dark:text-gray-400 uppercase tracking-[3px] text-xs mt-2">
                 Clients
               </p>
@@ -443,7 +424,7 @@ export default function Portfolio() {
           </div>
 
           <div>
-            <p className="uppercase tracking-[5px] text-[#1da1f2] text-sm mb-4 fade-slide">
+            <p className="mono-label uppercase text-[#1da1f2] text-sm mb-4 fade-slide">
               About Me
             </p>
 
@@ -472,16 +453,16 @@ export default function Portfolio() {
       <section id="services" className="py-20 sm:py-28 px-6">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12 sm:mb-20">
-            <p className="uppercase tracking-[5px] text-[#1da1f2] text-sm mb-4">
+            <p className="mono-label uppercase text-[#1da1f2] text-sm mb-4">
               My Expertise
             </p>
 
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black bg-gradient-to-r from-[#00658D] to-[#00AEEF] dark:from-sky-400 dark:to-cyan-300 bg-clip-text text-transparent">Service Offerings</h2>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black accent-text">Service Offerings</h2>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6 sm:gap-10">
             {/* CARD */}
-            <div className="bg-white dark:bg-[#111A2E] rounded-[24px] sm:rounded-[30px] p-6 sm:p-8 lg:p-10 shadow-xl shadow-[#00AEEF]/10 hover:-translate-y-3 hover:shadow-2xl hover:shadow-[#00AEEF]/20 duration-500 border border-gray-100 dark:border-gray-800">
+            <div className="bg-white dark:bg-[#111111] rounded-[24px] sm:rounded-[30px] p-6 sm:p-8 lg:p-10 shadow-xl hover:-translate-y-3 hover:shadow-2xl duration-500 border border-gray-100 dark:border-white/[0.06]">
               <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center mb-6 sm:mb-8">
                 <img src="/images/cyberstorelk.png" alt="CyberStoreLK" className="w-8 h-8 sm:w-10 sm:h-10 object-contain" />
               </div>
@@ -505,7 +486,7 @@ export default function Portfolio() {
             </div>
 
             {/* CARD */}
-            <div className="bg-white dark:bg-[#111A2E] rounded-[24px] sm:rounded-[30px] p-6 sm:p-8 lg:p-10 shadow-xl shadow-[#00AEEF]/10 hover:-translate-y-3 hover:shadow-2xl hover:shadow-[#00AEEF]/20 duration-500 border border-gray-100 dark:border-gray-800">
+            <div className="bg-white dark:bg-[#111111] rounded-[24px] sm:rounded-[30px] p-6 sm:p-8 lg:p-10 shadow-xl hover:-translate-y-3 hover:shadow-2xl duration-500 border border-gray-100 dark:border-white/[0.06]">
               <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-green-100 flex items-center justify-center mb-6 sm:mb-8">
                 <img src="https://cdn.worldvectorlogo.com/logos/fiverr-1.svg" alt="Fiverr" className="w-8 h-8 sm:w-10 sm:h-10 object-contain" />
               </div>
@@ -544,7 +525,7 @@ export default function Portfolio() {
                   return (
                     <div
                       key={`${item.label}-${index}`}
-                      className="flex items-center gap-2 sm:gap-3 rounded-full bg-white dark:bg-[#111A2E] border border-gray-100 dark:border-gray-800 px-4 sm:px-5 py-3 shadow-sm"
+                      className="flex items-center gap-2 sm:gap-3 rounded-full bg-white dark:bg-[#111111] border border-gray-100 dark:border-white/[0.06] px-4 sm:px-5 py-3 shadow-sm"
                     >
                       <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#1da1f2]/10 text-[#1da1f2]">
                         <Icon size={18} />
@@ -566,18 +547,18 @@ export default function Portfolio() {
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 mb-12 sm:mb-16">
             <div>
-              <p className="uppercase tracking-[5px] text-[#1da1f2] text-sm mb-4">
+              <p className="mono-label uppercase text-[#1da1f2] text-sm mb-4">
                 Portfolio
               </p>
 
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black bg-gradient-to-r from-[#00658D] to-[#00AEEF] dark:from-sky-400 dark:to-cyan-300 bg-clip-text text-transparent">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black accent-text">
                 Selected Works &
                 <br />
                 Experiments
               </h2>
             </div>
 
-            <div className="project-filter-bar bg-white dark:bg-[#111A2E] rounded-full p-2 flex gap-1.5 sm:gap-2 shadow-md w-full sm:w-auto">
+            <div className="project-filter-bar bg-white dark:bg-[#111111] rounded-full p-2 flex gap-1.5 sm:gap-2 shadow-md w-full sm:w-auto">
               {projectFilters.map(({ label, icon: Icon }) => (
                 <button
                   key={label}
@@ -643,7 +624,7 @@ export default function Portfolio() {
                         className="w-full"
                       />
                       <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 duration-500 flex items-center justify-center">
-                        <div className="opacity-0 group-hover:opacity-100 duration-500 flex items-center gap-2 bg-white text-black px-4 sm:px-6 py-2 sm:py-3 rounded-full font-semibold text-sm sm:text-base">
+                        <div className="opacity-0 group-hover:opacity-100 duration-500 flex items-center gap-2 bg-[#ffffff] text-black px-4 sm:px-6 py-2 sm:py-3 rounded-full font-semibold text-sm sm:text-base shadow-lg">
                           <ExternalLink size={16} />
                           View on Figma
                         </div>
@@ -662,11 +643,11 @@ export default function Portfolio() {
           {(projectFilter === "All" || projectFilter === "Web") && (
           <div className="mt-20 sm:mt-28 fade-in">
             <div className="text-center mb-10 sm:mb-14">
-              <p className="uppercase tracking-[5px] text-[#1da1f2] text-sm mb-4">
+              <p className="mono-label uppercase text-[#1da1f2] text-sm mb-4">
                 Featured Project
               </p>
 
-              <h3 className="text-3xl sm:text-4xl lg:text-5xl font-black mb-3 bg-gradient-to-r from-[#00658D] to-[#00AEEF] dark:from-sky-400 dark:to-cyan-300 bg-clip-text text-transparent">
+              <h3 className="text-3xl sm:text-4xl lg:text-5xl font-black mb-3 accent-text">
                 Ceylon Tours
               </h3>
 
@@ -686,7 +667,7 @@ export default function Portfolio() {
               </div>
 
               {projectFilter === "Web" && (
-              <div className="lg:col-span-2 bg-white dark:bg-[#111A2E] rounded-[24px] sm:rounded-[32px] p-6 sm:p-8 shadow-xl border border-gray-100 dark:border-gray-800 flex flex-col gap-6 sm:gap-7 hover:-translate-y-1 duration-500 lg:sticky lg:top-28">
+              <div className="lg:col-span-2 bg-white dark:bg-[#111111] rounded-[24px] sm:rounded-[32px] p-6 sm:p-8 shadow-xl border border-gray-100 dark:border-white/[0.06] flex flex-col gap-6 sm:gap-7 hover:-translate-y-1 duration-500 lg:sticky lg:top-28">
                 <div>
                   <h4 className="text-xl sm:text-2xl font-black mb-3 sm:mb-4">
                     About This Project
@@ -758,11 +739,11 @@ export default function Portfolio() {
       <section id="contact" className="pt-28 sm:pt-40 pb-20 sm:pb-28 px-6">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12 sm:mb-16">
-            <p className="uppercase tracking-[5px] text-[#1da1f2] text-sm mb-4">
+            <p className="mono-label uppercase text-[#1da1f2] text-sm mb-4">
               Hello Binada
             </p>
 
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black bg-gradient-to-r from-[#00658D] to-[#00AEEF] dark:from-sky-400 dark:to-cyan-300 bg-clip-text text-transparent">CONTACT ME</h2>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black accent-text">CONTACT ME</h2>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 relative">
@@ -792,7 +773,7 @@ export default function Portfolio() {
                     rel="noopener noreferrer"
                     className="flex flex-col items-center text-center cursor-pointer group"
                     style={{
-                      background: dark ? 'rgba(17,26,46,0.70)' : 'rgba(255,255,255,0.70)',
+                      background: dark ? 'rgba(16,16,16,0.72)' : 'rgba(255,255,255,0.70)',
                       borderRadius: 16,
                       outline: dark ? '1px solid rgba(255,255,255,0.08)' : '1px solid white',
                       outlineOffset: -1,
@@ -821,7 +802,7 @@ export default function Portfolio() {
             {/* RIGHT */}
             <div
               style={{
-                background: dark ? 'rgba(17,26,46,0.70)' : 'rgba(255,255,255,0.70)',
+                background: dark ? 'rgba(16,16,16,0.72)' : 'rgba(255,255,255,0.70)',
                 borderRadius: 32,
                 outline: dark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(255,255,255,0.60)',
                 outlineOffset: -1,
@@ -896,9 +877,9 @@ export default function Portfolio() {
       </section>
 
       {/* ================= FOOTER ================= */}
-      <footer className="py-10 border-t border-gray-200 dark:border-gray-800/60">
+      <footer className="py-10 border-t border-gray-200 dark:border-white/[0.06]">
         <div className="max-w-6xl mx-auto px-6 flex flex-col lg:flex-row items-center justify-between gap-6">
-          <h1 className="font-black text-xl"><span style={{color: dark ? '#7DD3FC' : '#00658D'}}>Binada</span><span style={{color: '#00AEEF'}}>_d</span></h1>
+          <h1 className="font-black text-xl"><span style={{color: dark ? '#3EC1F3' : '#00658D'}}>Binada</span><span style={{color: '#00AEEF'}}>_d</span></h1>
 
           <div className="flex flex-wrap justify-center gap-4 sm:gap-8 text-sm text-gray-500 dark:text-gray-400">
             <a href="https://github.com/BiNaDa2003" target="_blank" rel="noopener noreferrer" className="hover:text-[#1da1f2] duration-300">GitHub</a>
@@ -908,7 +889,7 @@ export default function Portfolio() {
           </div>
 
           <p className="text-gray-500 dark:text-gray-400 text-sm text-center">
-            © 2026 <span style={{color: dark ? '#7DD3FC' : '#00658D'}}>Binada</span><span style={{color: '#00AEEF'}}>_d</span>. All rights reserved.
+            © 2026 <span style={{color: dark ? '#3EC1F3' : '#00658D'}}>Binada</span><span style={{color: '#00AEEF'}}>_d</span>. All rights reserved.
           </p>
         </div>
 
@@ -929,7 +910,7 @@ export default function Portfolio() {
       </a>
 
       <div
-        className={`portfolio-loader fixed inset-0 z-[100] flex items-center justify-center bg-[#f5f5f5] dark:bg-[#0B1220] transition-opacity duration-700 ${
+        className={`portfolio-loader fixed inset-0 z-[100] flex items-center justify-center bg-[#f5f5f5] dark:bg-[#050505] transition-opacity duration-700 ${
           isLoading ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
         aria-hidden={!isLoading}
@@ -941,7 +922,7 @@ export default function Portfolio() {
             className="loader-hero-image w-56 sm:w-72 max-w-[78vw] object-contain"
           />
           <div className="flex items-center justify-center">
-            <span className="text-[#00658D] dark:text-sky-300">{loaderText}</span>
+            <span className="text-[#00658D] dark:text-[#3EC1F3]">{loaderText}</span>
             <span className="ml-1 h-8 sm:h-10 w-0.5 bg-[#00AEEF] animate-pulse" aria-hidden="true" />
           </div>
         </div>

@@ -7,13 +7,58 @@ html {
 }
 
 html.dark {
-  background-color: #0b1220;
+  background-color: #050505;
   color-scheme: dark;
 }
 
 body {
   margin: 0;
   background: #f7f9fc;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+::selection {
+  background: rgba(0, 174, 239, 0.25);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c9d4dd;
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+html.dark ::-webkit-scrollbar-thumb {
+  background: #2b2b2b;
+  background-clip: content-box;
+}
+
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background: #3d3d3d;
+  background-clip: content-box;
+}
+
+.mono-label {
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 3px;
+  font-weight: 500;
+}
+
+.accent-text {
+  color: #00658d;
+}
+
+html.dark .accent-text {
+  color: #3ec1f3;
 }
 
 .portfolio-shell {
@@ -98,19 +143,15 @@ body {
 }
 
 .portfolio-shell section#projects [class~="bg-gray-800"] {
-  background: #1f3447 !important;
+  background: #17181a !important;
 }
 
 .portfolio-shell section#projects [class~="bg-gray-700"] {
-  background: #31536c !important;
+  background: #26282c !important;
 }
 
 .portfolio-shell section#projects [class~="bg-gray-600"] {
-  background: #658398 !important;
-}
-
-.portfolio-shell section#projects [class~="bg-[#1da1f2]/10"] {
-  background: rgba(7, 133, 173, 0.1) !important;
+  background: #45484e !important;
 }
 
 .portfolio-shell header .header-contact {
@@ -132,38 +173,40 @@ html:not(.dark) .portfolio-shell .project-filter[class~="bg-[#1da1f2]"] {
   background: var(--accent) !important;
 }
 
+/* ================= DARK — PURE BLACK ================= */
+
 html.dark .portfolio-shell {
-  --surface: #101d31;
-  --surface-soft: #0d192b;
-  --line: rgba(148, 163, 184, 0.16);
-  --ink: #eef6ff;
-  --muted: #9aabc0;
-  --accent: #6bd8f6;
-  background: #08111f !important;
+  --surface: #121212;
+  --surface-soft: #0d0d0d;
+  --line: rgba(255, 255, 255, 0.08);
+  --ink: #ececec;
+  --muted: #9c9c9c;
+  --accent: #3ec1f3;
+  background: #050505 !important;
 }
 
 html.dark .portfolio-shell header {
-  background: rgba(8, 17, 31, 0.62) !important;
-  border-bottom-color: rgba(148, 163, 184, 0.2) !important;
-  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.24) !important;
+  background: rgba(5, 5, 5, 0.72) !important;
+  border-bottom-color: rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.45) !important;
 }
 
 html.dark .portfolio-shell section#home,
 html.dark .portfolio-shell section#services,
 html.dark .portfolio-shell section#contact {
-  background: rgba(13, 25, 43, 0.62);
+  background: rgba(13, 13, 13, 0.55);
 }
 
 html.dark .portfolio-shell section#about,
 html.dark .portfolio-shell section#projects {
-  background: rgba(8, 17, 31, 0.78);
+  background: rgba(8, 8, 8, 0.75);
 }
 
 html.dark .portfolio-shell [class~="bg-white"] {
   background-color: var(--surface) !important;
 }
 
-html.dark .portfolio-shell [class~="dark:bg-[#111A2E]"] {
+html.dark .portfolio-shell [class~="dark:bg-[#111111]"] {
   background-color: var(--surface) !important;
 }
 
@@ -176,22 +219,22 @@ html.dark .portfolio-shell [class~="text-[#1da1f2]"] {
 }
 
 html.dark .portfolio-shell [class~="bg-[#1da1f2]"] {
-  background-color: #1496bf !important;
+  background-color: #1ea8dd !important;
 }
 
 html.dark .portfolio-shell .project-filter {
-  color: #b7c6d7;
+  color: #b5b5b5;
   background: transparent;
 }
 
 html.dark .portfolio-shell .project-filter[class~="bg-[#1da1f2]"] {
   color: #ffffff;
-  background: #1496bf !important;
+  background: #1ea8dd !important;
 }
 
 html.dark .portfolio-shell [class*="shadow-xl"],
 html.dark .portfolio-shell [class*="shadow-2xl"] {
-  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.25) !important;
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.55) !important;
 }
 
 .tech-scrollbar {

@@ -20,7 +20,7 @@ const projectFilters = [
   { label: "Web", icon: Code2 },
 ];
 
-function ShotFrame({ src, videoSrc, caption }) {
+function ShotFrame({ src, videoSrc, caption, url = "ceylon-tours" }) {
   return (
     <div className="relative group">
       <div className="relative bg-gray-900 rounded-[16px] sm:rounded-[24px] p-2 sm:p-3 shadow-2xl ring-1 ring-white/10 hover:scale-[1.01] duration-500">
@@ -31,7 +31,7 @@ function ShotFrame({ src, videoSrc, caption }) {
             <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-green-500"></div>
           </div>
           <div className="bg-gray-700 text-white/70 text-[10px] sm:text-xs px-3 sm:px-6 py-1 rounded-full truncate max-w-[55%]">
-            ceylon-tours
+            {url}
           </div>
           <div className="text-white/60 text-[10px] sm:text-xs whitespace-nowrap">4K</div>
         </div>
@@ -57,6 +57,7 @@ function ShotFrame({ src, videoSrc, caption }) {
 
 export default function Portfolio() {
   const [hoverHero, setHoverHero] = useState(false);
+  const [mobileHeroTab, setMobileHeroTab] = useState("design");
   const [roleIndex, setRoleIndex] = useState(0);
   const [displayText, setDisplayText] = useState("");
   const [form, setForm] = useState({ name: "", email: "", message: "" });
@@ -227,14 +228,167 @@ export default function Portfolio() {
         <div className="pointer-events-none absolute bottom-0 left-1/3 w-[400px] h-[300px] rounded-full bg-gradient-to-t from-[#00658D]/[0.07] to-transparent blur-3xl"></div>
 
         <div className="max-w-7xl mx-auto w-full flex flex-col items-center justify-center gap-8 lg:gap-6 relative">
-          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-center w-full lg:relative lg:min-h-[500px]">
+          {/* ================= MOBILE & TABLET HERO (lg:hidden) ================= */}
+          <div className="lg:hidden flex flex-col items-center w-full gap-6 pt-2">
+            {/* Top Intro */}
+            <div className="text-center space-y-2 max-w-md mx-auto">
+              <h1 className="text-3xl sm:text-4xl font-black tracking-tight">
+                It's me <span className="accent-text">binada_d.</span>
+              </h1>
 
-            {/* LEFT SIDE - mobile: in flow, desktop: absolute */}
+              <p className="text-gray-500 dark:text-gray-400 text-sm sm:text-base leading-relaxed">
+                Creative developer &amp; UI/UX designer
+              </p>
+            </div>
+
+            {/* Center Avatar */}
+            <div className="relative flex items-center justify-center w-full py-2">
+              <img
+                src="/images/hero.jpg"
+                alt="Binada Basilu"
+                className="relative z-10 w-64 sm:w-80 max-h-[42vh] object-contain"
+              />
+            </div>
+
+            {/* Expertise Switcher & Cards */}
+            <div className="w-full max-w-2xl mx-auto">
+              {/* Tab Selector on small screens */}
+              <div className="sm:hidden flex bg-white dark:bg-[#111111] p-1.5 rounded-2xl shadow-md border border-gray-100 dark:border-white/[0.08] mb-4">
+                <button
+                  type="button"
+                  onClick={() => setMobileHeroTab("design")}
+                  className={`flex-1 py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2 duration-300 ${
+                    mobileHeroTab === "design"
+                      ? "bg-[#1da1f2] text-white shadow-md shadow-[#1da1f2]/30 scale-[1.02]"
+                      : "text-gray-600 dark:text-gray-300 hover:text-[#1da1f2]"
+                  }`}
+                >
+                  <Palette size={15} />
+                  <span>UI/UX Design</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setMobileHeroTab("dev")}
+                  className={`flex-1 py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2 duration-300 ${
+                    mobileHeroTab === "dev"
+                      ? "bg-[#1da1f2] text-white shadow-md shadow-[#1da1f2]/30 scale-[1.02]"
+                      : "text-gray-600 dark:text-gray-300 hover:text-[#1da1f2]"
+                  }`}
+                >
+                  <Code2 size={15} />
+                  <span>Development</span>
+                </button>
+              </div>
+
+              {/* Cards Container: On mobile (under sm), display active tab. On sm (tablet), display both side-by-side! */}
+              <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
+                {/* DESIGN CARD */}
+                <div
+                  className={`bg-white dark:bg-[#111111] rounded-[24px] p-5 sm:p-6 shadow-xl border border-gray-100 dark:border-white/[0.08] flex flex-col justify-between transition-all duration-300 ${
+                    mobileHeroTab === "design" ? "block" : "hidden sm:flex"
+                  }`}
+                >
+                  <div>
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="mono-label uppercase text-[#1da1f2] text-xs font-bold tracking-widest">
+                        Design
+                      </span>
+                      <div className="w-8 h-8 rounded-full bg-[#1da1f2]/10 text-[#1da1f2] flex items-center justify-center">
+                        <Palette size={16} />
+                      </div>
+                    </div>
+
+                    <h2 className="text-2xl font-black mb-1.5">UI/UX</h2>
+                    <p className="text-gray-500 dark:text-gray-400 text-xs sm:text-sm mb-4">
+                      Beautifully human-centered interfaces
+                    </p>
+
+                    <div className="space-y-3 pt-2 border-t border-gray-100 dark:border-white/[0.06]">
+                      <div className="p-3 rounded-xl bg-gray-50 dark:bg-white/[0.03]">
+                        <h3 className="font-bold text-sm text-gray-900 dark:text-white">Travel Planner</h3>
+                        <p className="text-gray-500 dark:text-gray-400 text-xs mt-0.5">
+                          Smart travel planning app with intuitive experiences.
+                        </p>
+                      </div>
+
+                      <div className="p-3 rounded-xl bg-gray-50 dark:bg-white/[0.03]">
+                        <h3 className="font-bold text-sm text-gray-900 dark:text-white">Health Tracker</h3>
+                        <p className="text-gray-500 dark:text-gray-400 text-xs mt-0.5">
+                          Modern wellness tracking interfaces.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <a
+                    href="#projects"
+                    onClick={() => setProjectFilter("Design")}
+                    className="mt-5 inline-flex items-center justify-between w-full px-4 py-2.5 rounded-xl bg-[#1da1f2]/10 text-[#1da1f2] font-semibold text-xs hover:bg-[#1da1f2] hover:text-white transition-all duration-300 no-underline"
+                  >
+                    <span>View Design Projects</span>
+                    <ArrowRight size={15} />
+                  </a>
+                </div>
+
+                {/* DEVELOPMENT CARD */}
+                <div
+                  className={`bg-white dark:bg-[#111111] rounded-[24px] p-5 sm:p-6 shadow-xl border border-gray-100 dark:border-white/[0.08] flex flex-col justify-between transition-all duration-300 ${
+                    mobileHeroTab === "dev" ? "block" : "hidden sm:flex"
+                  }`}
+                >
+                  <div>
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="mono-label uppercase text-[#1da1f2] text-xs font-bold tracking-widest">
+                        Engineering
+                      </span>
+                      <div className="w-8 h-8 rounded-full bg-[#1da1f2]/10 text-[#1da1f2] flex items-center justify-center">
+                        <Code2 size={16} />
+                      </div>
+                    </div>
+
+                    <h2 className="text-2xl font-black mb-1.5">Development</h2>
+                    <p className="text-gray-500 dark:text-gray-400 text-xs sm:text-sm mb-4">
+                      Robust, scalable applications
+                    </p>
+
+                    <div className="space-y-3 pt-2 border-t border-gray-100 dark:border-white/[0.06]">
+                      <div className="p-3 rounded-xl bg-gray-50 dark:bg-white/[0.03]">
+                        <h3 className="font-bold text-sm text-gray-900 dark:text-white">E-Commerce Platform</h3>
+                        <p className="text-gray-500 dark:text-gray-400 text-xs mt-0.5">
+                          Full stack commerce apps with React &amp; APIs.
+                        </p>
+                      </div>
+
+                      <div className="p-3 rounded-xl bg-gray-50 dark:bg-white/[0.03]">
+                        <h3 className="font-bold text-sm text-gray-900 dark:text-white">Task Manager API</h3>
+                        <p className="text-gray-500 dark:text-gray-400 text-xs mt-0.5">
+                          Secure backend architecture for productivity apps.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <a
+                    href="#projects"
+                    onClick={() => setProjectFilter("Web")}
+                    className="mt-5 inline-flex items-center justify-between w-full px-4 py-2.5 rounded-xl bg-[#1da1f2]/10 text-[#1da1f2] font-semibold text-xs hover:bg-[#1da1f2] hover:text-white transition-all duration-300 no-underline"
+                  >
+                    <span>View Web Projects</span>
+                    <ArrowRight size={15} />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* ================= DESKTOP HERO (hidden lg:flex) ================= */}
+          <div className="hidden lg:flex lg:flex-row lg:items-center lg:justify-center w-full lg:relative lg:min-h-[500px]">
+            {/* LEFT SIDE */}
             <div
-              className={`relative w-full lg:w-auto opacity-100 translate-x-0 lg:absolute lg:left-0 lg:top-1/2 lg:-translate-y-1/2 transition-all duration-700 z-20 ${
+              className={`absolute left-0 top-1/2 -translate-y-1/2 transition-all duration-700 z-20 ${
                 hoverHero
-                  ? "lg:opacity-100 lg:translate-x-0"
-                  : "lg:opacity-0 lg:-translate-x-32 lg:pointer-events-none"
+                  ? "opacity-100 translate-x-0"
+                  : "opacity-0 -translate-x-32 pointer-events-none"
               }`}
             >
               <p className="uppercase tracking-[5px] text-[#1da1f2] text-sm mb-3">
@@ -249,7 +403,7 @@ export default function Portfolio() {
                 Beautifully human-centered interfaces
               </p>
 
-              <div className="hidden sm:block space-y-6 lg:space-y-8">
+              <div className="space-y-6 lg:space-y-8">
                 <div>
                   <h3 className="font-bold text-base sm:text-lg">Travel Planner</h3>
                   <p className="text-gray-500 dark:text-gray-400 text-sm">
@@ -265,7 +419,11 @@ export default function Portfolio() {
                 </div>
               </div>
 
-              <a href="#projects" className="mt-6 lg:mt-10 flex items-center gap-2 text-[#1da1f2] font-semibold hover:gap-4 duration-300">
+              <a
+                href="#projects"
+                onClick={() => setProjectFilter("Design")}
+                className="mt-6 lg:mt-10 flex items-center gap-2 text-[#1da1f2] font-semibold hover:gap-4 duration-300 no-underline"
+              >
                 View All Projects <ArrowRight size={18} />
               </a>
             </div>
@@ -275,15 +433,15 @@ export default function Portfolio() {
               <div
                 className={`absolute rounded-full transition-all duration-700 ${
                   hoverHero
-                    ? "w-[250px] h-[250px] sm:w-[350px] sm:h-[350px] lg:w-[450px] lg:h-[450px] bg-[#1da1f2]/10 blur-[100px]"
-                    : "w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] lg:w-[800px] lg:h-[800px] bg-[#1da1f2]/[0.06] blur-[150px]"
+                    ? "w-[450px] h-[450px] bg-[#1da1f2]/10 blur-[100px]"
+                    : "w-[800px] h-[800px] bg-[#1da1f2]/[0.06] blur-[150px]"
                 }`}
               ></div>
 
               <img
                 src="/images/hero.jpg"
                 alt="hero"
-                className="relative z-10 transition-all duration-700 origin-center max-h-[50vh] sm:max-h-[60vh] lg:max-h-none"
+                className="relative z-10 transition-all duration-700 origin-center"
                 style={{
                   width: "min(750px, 80vw)",
                   transform: hoverHero ? "scale(0.45)" : "scale(1)",
@@ -291,31 +449,31 @@ export default function Portfolio() {
               />
             </div>
 
-            {/* RIGHT SIDE - mobile: in flow, desktop: absolute */}
+            {/* RIGHT SIDE */}
             <div
-              className={`relative w-full lg:w-auto opacity-100 translate-x-0 lg:absolute lg:right-0 lg:top-1/2 lg:-translate-y-1/2 transition-all duration-700 z-20 ${
+              className={`absolute right-0 top-1/2 -translate-y-1/2 transition-all duration-700 z-20 ${
                 hoverHero
-                  ? "lg:opacity-100 lg:translate-x-0"
-                  : "lg:opacity-0 lg:translate-x-32 lg:pointer-events-none"
+                  ? "opacity-100 translate-x-0"
+                  : "opacity-0 translate-x-32 pointer-events-none"
               }`}
             >
-              <p className="uppercase tracking-[5px] text-[#1da1f2] text-sm mb-3 lg:text-right">
+              <p className="uppercase tracking-[5px] text-[#1da1f2] text-sm mb-3 text-right">
                 Engineering
               </p>
 
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black leading-none mb-4 lg:text-right">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black leading-none mb-4 text-right">
                 Development
               </h1>
 
-              <p className="text-gray-500 dark:text-gray-400 mb-6 lg:mb-10 lg:text-right">
+              <p className="text-gray-500 dark:text-gray-400 mb-6 lg:mb-10 text-right">
                 Robust, scalable applications
               </p>
 
-              <div className="hidden sm:block space-y-6 lg:space-y-8 lg:text-right">
+              <div className="space-y-6 lg:space-y-8 text-right">
                 <div>
                   <h3 className="font-bold text-base sm:text-lg">E-Commerce Platform</h3>
                   <p className="text-gray-500 dark:text-gray-400 text-sm">
-                    Full-stack commerce apps with React & APIs.
+                    Full-stack commerce apps with React &amp; APIs.
                   </p>
                 </div>
 
@@ -327,20 +485,24 @@ export default function Portfolio() {
                 </div>
               </div>
 
-              <div className="flex lg:justify-end">
-                <a href="#projects" className="mt-6 lg:mt-10 flex items-center gap-2 text-[#1da1f2] font-semibold hover:gap-4 duration-300">
+              <div className="flex justify-end">
+                <a
+                  href="#projects"
+                  onClick={() => setProjectFilter("Web")}
+                  className="mt-6 lg:mt-10 flex items-center gap-2 text-[#1da1f2] font-semibold hover:gap-4 duration-300 no-underline"
+                >
                   View All Projects <ArrowRight size={18} />
                 </a>
               </div>
             </div>
           </div>
 
-          {/* TEXT BELOW IMAGE */}
+          {/* DESKTOP TEXT BELOW IMAGE */}
           <div
-            className={`text-center transition-all duration-700 ${
+            className={`hidden lg:block text-center transition-all duration-700 ${
               hoverHero
-                ? "lg:opacity-0 lg:translate-y-8 lg:scale-95"
-                : "lg:opacity-100 lg:translate-y-0 lg:scale-100"
+                ? "opacity-0 translate-y-8 scale-95"
+                : "opacity-100 translate-y-0 scale-100"
             }`}
           >
             <h1 className="text-3xl sm:text-4xl font-black mb-2">
@@ -348,7 +510,7 @@ export default function Portfolio() {
             </h1>
 
             <p className="text-gray-500 dark:text-gray-400">
-              Creative developer & UI/UX designer
+              Creative developer &amp; UI/UX designer
             </p>
           </div>
         </div>
@@ -641,15 +803,109 @@ export default function Portfolio() {
           )}
 
           {(projectFilter === "All" || projectFilter === "Web") && (
-          <div className="mt-20 sm:mt-28 fade-in">
-            <div className="text-center mb-10 sm:mb-14">
-              <p className="mono-label uppercase text-[#1da1f2] text-sm mb-4">
-                Featured Project
-              </p>
+          <div className="mt-20 sm:mt-28 fade-in space-y-24 sm:space-y-32">
+            {/* MedCare Assist */}
+            <div>
+              <div className="text-center mb-10 sm:mb-14">
+                <p className="mono-label uppercase text-[#1da1f2] text-sm mb-4">
+                  Featured Project
+                </p>
 
-              <h3 className="text-3xl sm:text-4xl lg:text-5xl font-black mb-3 accent-text">
-                Ceylon Tours
-              </h3>
+                <h3 className="text-3xl sm:text-4xl lg:text-5xl font-black mb-3 accent-text">
+                  MedCare Assist
+                </h3>
+
+                <p className="text-gray-500 dark:text-gray-400 sm:text-lg">
+                  Critical Medicine Finder &middot; Full Stack Web Application
+                </p>
+              </div>
+
+              <div className={projectFilter === "Web"
+                ? "max-w-6xl mx-auto grid lg:grid-cols-5 gap-8 lg:gap-10 items-start"
+                : "max-w-3xl mx-auto"}>
+                <div className={projectFilter === "Web" ? "lg:col-span-3 flex flex-col gap-8 sm:gap-10" : "flex flex-col gap-8 sm:gap-10"}>
+                  <ShotFrame
+                    videoSrc="/images/MedCare Assit.mp4"
+                    caption="MedCare Assist — Critical Medicine Locator & Reservation"
+                    url="medcare-assist"
+                  />
+                </div>
+
+                {projectFilter === "Web" && (
+                <div className="lg:col-span-2 bg-white dark:bg-[#111111] rounded-[24px] sm:rounded-[32px] p-6 sm:p-8 shadow-xl border border-gray-100 dark:border-white/[0.06] flex flex-col gap-6 sm:gap-7 hover:-translate-y-1 duration-500 lg:sticky lg:top-28">
+                  <div>
+                    <h4 className="text-xl sm:text-2xl font-black mb-3 sm:mb-4">
+                      About This Project
+                    </h4>
+
+                    <p className="text-gray-500 dark:text-gray-400 leading-7 sm:leading-8 text-sm sm:text-base">
+                      A full-stack Critical Medicine Finder web application designed
+                      to help users locate and reserve urgently needed, hard-to-find
+                      medicines in real time across pharmacies. Built with a responsive
+                      React frontend and a robust PHP 8.4 REST API backend with MySQL
+                      in a localhost (XAMPP) environment. Features multi-role portals
+                      for patients, pharmacists, and admins with live inventory management.
+                    </p>
+                  </div>
+
+                  <div className="space-y-3">
+                    {[
+                      "Real-time critical medicine search & pharmacy locator",
+                      "Live stock tracking & prescription reservation system",
+                      "Multi-role portals (Patient, Pharmacist, Admin)",
+                      "Fast RESTful API built with PHP 8.4 & MySQL backend",
+                      "Responsive UI built with React & modern component styling",
+                    ].map((feature) => (
+                      <div key={feature} className="flex items-start gap-3">
+                        <span className="mt-0.5 w-5 h-5 rounded-full bg-[#1da1f2]/10 text-[#1da1f2] flex items-center justify-center text-[11px] font-bold shrink-0">
+                          ✓
+                        </span>
+                        <span className="text-gray-600 dark:text-gray-300 text-sm leading-6">{feature}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div>
+                    <p className="uppercase tracking-[3px] text-xs text-gray-400 mb-3">
+                      Tech Stack
+                    </p>
+
+                    <div className="flex flex-wrap gap-2">
+                      {["React", "PHP 8.4", "MySQL", "REST API", "Vite", "Localhost / XAMPP"].map((tech) => (
+                        <span
+                          key={tech}
+                          className="px-3.5 py-1.5 rounded-full bg-[#1da1f2]/10 text-[#1da1f2] text-xs font-semibold"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  <a
+                    href="https://github.com/Nipuna-M/MedcareAssist"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-auto inline-flex items-center justify-center gap-3 px-6 py-3.5 rounded-full bg-gray-900 dark:bg-white dark:text-gray-900 text-white font-semibold hover:bg-[#1da1f2] dark:hover:bg-[#1da1f2] dark:hover:text-white hover:scale-[1.02] duration-300 no-underline text-sm"
+                  >
+                    <ExternalLink size={18} />
+                    View Source Code on GitHub
+                  </a>
+                </div>
+                )}
+              </div>
+            </div>
+
+            {/* Ceylon Tours */}
+            <div>
+              <div className="text-center mb-10 sm:mb-14">
+                <p className="mono-label uppercase text-[#1da1f2] text-sm mb-4">
+                  Featured Project
+                </p>
+
+                <h3 className="text-3xl sm:text-4xl lg:text-5xl font-black mb-3 accent-text">
+                  Ceylon Tours
+                </h3>
 
               <p className="text-gray-500 dark:text-gray-400 sm:text-lg">
                 Tour Package Booking System &middot; Full Stack Web Application
@@ -661,9 +917,10 @@ export default function Portfolio() {
               : "max-w-3xl mx-auto"}>
               <div className={projectFilter === "Web" ? "lg:col-span-3 flex flex-col gap-8 sm:gap-10" : "flex flex-col gap-8 sm:gap-10"}>
                 <ShotFrame
-                  videoSrc="/images/ceylon-tours-demo.mp4"
-                  caption="Customer Panel — Tour Packages & Booking"
-                />
+                    videoSrc="/images/ceylon-tours-demo.mp4"
+                    caption="Customer Panel — Tour Packages & Booking"
+                    url="ceylon-tours"
+                  />
               </div>
 
               {projectFilter === "Web" && (
@@ -728,6 +985,7 @@ export default function Portfolio() {
                 </a>
               </div>
               )}
+            </div>
             </div>
           </div>
           )}
